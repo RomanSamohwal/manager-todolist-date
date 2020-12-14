@@ -6,50 +6,39 @@ export const MonthContainer = () => {
 
     moment.updateLocale('ru', {week: {dow: 1}})
     const dayStart = moment().startOf('month').startOf('week')
-    const startMonth = moment().startOf('month')
-
+    const monthStart = moment().startOf('month')
     type DayCurrentType = typeof dayStart
-
     console.log(dayStart)
+
     let [dayCurrent, setDayCurrent] = useState<DayCurrentType>(dayStart)
-    let [currentMonth, setCurrentMonth] = useState<DayCurrentType>(dayStart)
+    let [currentMonth, setCurrentMonth] = useState<DayCurrentType>(monthStart)
+
     console.log(dayCurrent)
 
     useEffect(() => {
-        setDayCurrent(dayCurrent)
-        setCurrentMonth(startMonth)
+
+        /*  setDayCurrent(dayCurrent)
+          setCurrentMonth(monthStart)*/
     }, [])
 
     const setPrevMonth = () => {
         debugger
-        let prevMonth = dayCurrent.subtract(1, 'month').format('M')
-        let selectedMonth = moment().month(prevMonth).startOf('month')
-        let diffBetweenDay = 6 - (6 - selectedMonth.weekday())
-        if(diffBetweenDay === 0){
-            diffBetweenDay = 1
-        }
-        let prevMonthStartWeek = selectedMonth.clone().subtract(diffBetweenDay, 'day')
-        /*let prevMonthStartWeek = selectedMonth.startOf('week').clone()*/
-        setDayCurrent(prevMonthStartWeek.startOf('week'))
         let month = currentMonth.subtract(1, 'month').clone()
-        setCurrentMonth(month)
+        /*  let monthPrev = month.subtract(1,'day')*/
+        setDayCurrent(month.startOf('week'))
     }
 
     const setNextMonth = () => {
         debugger
-        let nextMonth = dayCurrent.add(1, 'month').format('M')
-        let selectedMonth = moment().month(nextMonth).startOf('month')
-        let nextMonthStartWeek = selectedMonth.startOf('week').clone()
-        setDayCurrent(nextMonthStartWeek)
         let month = currentMonth.add(1, 'month').clone()
-        setCurrentMonth(month)
+        setDayCurrent(month.startOf('week'))
     }
 
     return <div>
         <button onClick={() => setPrevMonth()}>{'<'}</button>
         {currentMonth.format('M')}-{currentMonth.format('Y')}
         <button onClick={() => setNextMonth()}>{'>'}</button>
-        <Month dayCurrent = {dayCurrent} month = {currentMonth}/>
+        <Month dayCurrent={dayCurrent} month={currentMonth}/>
     </div>
 }
 

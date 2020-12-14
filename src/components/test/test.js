@@ -82,7 +82,7 @@ export const Test = () => {
    /* let selectedJun = moment().month(6).startOf('month').startOf('week')
     console.log(selectedJun)*/
     //test
-    const day = moment().startOf('month')
+ /*   const day = moment().startOf('month')
     console.log(day)
     console.log(day.weekday())//1 Tuesday
     let diffBetweenDay = 6 - (6 - day.weekday())
@@ -94,7 +94,17 @@ export const Test = () => {
     console.log(selectedJun)
     let diff = 7 - (6 - selectedJun.weekday())
     let prev = selectedJun.clone().subtract(diff, 'day')
-    console.log(prev.startOf('week'))
+    console.log(prev.startOf('week'))*/
+    //найдем год
+    let year = moment().year()//2020
+    let yearCurrent = moment().startOf('year')//01 01 2020
+    let prevYearStartMonday = yearCurrent.startOf('week')//30 12 2019
+    console.log(year)
+    console.log(yearCurrent)
+    console.log(prevYearStartMonday)
+    console.log(yearCurrent.format('M'))
+
+
     return <div>
 
     </div>
