@@ -13,7 +13,7 @@ const GridWrapper = styled.div`
 const CellWrapper = styled.div`
   cursor: pointer;
   min-width: 140px;
-  min-height: 80px;
+  min-height: 90px;
   color: white;
   border: ${(props: any) => props.isDay ? '1px solid #2d45d8' : ' '};
   background-color: ${(props: any) => props.isWeekend ? '#272829' : '#1E1F21'} 
@@ -33,7 +33,7 @@ const DayWrapper = styled.div`
 
 export const Month = React.memo((props: any) => {
     const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    const day = props.dayCurrent.clone().subtract(1,'day');
+    const day = props.dayCurrent.clone().subtract(1, 'day');
     const daysArray = [...Array(42)].map(() => day.add(1, 'day').clone())
     let isToday = moment().date()
     let isMonth = props.month.clone()

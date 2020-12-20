@@ -1,0 +1,12 @@
+.event-container {
+    width: 150px;
+    background-color: green;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1;
+    /*border: 1px solid black;*/
+}

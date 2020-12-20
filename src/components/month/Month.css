@@ -1,24 +1,13 @@
-table {
-    border-collapse: collapse; /* Отображать двойные линии как одинарные */
-    min-width: 70vw;
-    font-size: 10px;
+.block_change_months {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
 }
 
-th {
-    text-align: center; /* Выравнивание по левому краю */
-    width: 10vw;
-    height: 6vw;
-    border: 1px solid black;
+.block_selected {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
 }
-
-
-td {
-    width: 10vw;
-    height: 6vw;
-    border: 1px solid black; /* Параметры границы */
-     /* Поля в ячейках */
-    vertical-align: top;
-    align-items: end;
-    color: #60676c;
-}
-
