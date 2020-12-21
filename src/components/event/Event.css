@@ -1,5 +1,5 @@
 .event-container {
-    width: 150px;
+    width: 200px;
     background-color: green;
     border-radius: 20px;
     text-align: center;
@@ -8,5 +8,5 @@
     align-items: center;
     color: white;
     z-index: 1;
-    /*border: 1px solid black;*/
+    border: 1px solid black;
 }
