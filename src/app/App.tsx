@@ -1,18 +1,17 @@
 import React from 'react';
-import { MonthContainer } from '../components/month/MonthContainer';
-import {Test} from '../components/test/test';
-import {MonthSelected} from '../components/month_selected/MonthSelected';
-import {WeekContainer} from '../components/week/WeekContainer';
-import { DayContainer } from '../components/day/DayContainer';
+import {ModalEvent} from '../components/modal/Modal';
+import {ModalWindow} from '../components/modal/Window';
 
 function App() {
     return (
         <div>
-         {/*   <MonthContainer/>*/}
-          {/*  <MonthSelected/>*/}
+           {/* <MonthContainer/>*/}
            {/* <Test/>*/}
-          {/* <WeekContainer/>*/}
-          <DayContainer/>
+           {/*<WeekContainer/>*/}
+         {/* <DayContainer/>*/}
+        {/* <DayContainer/>*/}
+            <ModalEvent/>
+          {/* <ModalWindow/>*/}
         </div>
     );
 }

@@ -1,5 +1,5 @@
 .event-container {
-    width: 200px;
+    min-width: 20vw;
     background-color: green;
     border-radius: 20px;
     text-align: center;

@@ -5,6 +5,7 @@ type PropsType = {
     text: string
     height: number
     top: number
+    left: number
 }
 
 export const Event: React.FC<PropsType> = (props) => {
@@ -12,7 +13,7 @@ export const Event: React.FC<PropsType> = (props) => {
         height: `${props.height}%`,
         position: 'absolute',
         top: `${props.top}%`,
-        left: '5px'
+        left: `${props.left}%`
     }}
                 className='event-container'>
         <div>{props.text}</div>

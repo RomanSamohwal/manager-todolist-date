@@ -12,7 +12,7 @@ export const DayContainer = () => {
 
     return <div className='day-container'>
         <SelectComponent onChangeFlag={onChangeFlag} flag={flag}/>
-        <TestPosition/>
-        {/*<Day/>*/}
+     {/*   <TestPosition/>*/}
+        <Day/>
     </div>
 }

@@ -1,0 +1,72 @@
+.container {
+    position:fixed;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+   /* border: 1px solid black;*/
+}
+
+.span, input, button, div {
+    display: block;
+    margin: 10px;
+}
+
+/*input {
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+   !* border: none;*!
+}*/
+
+.container-right {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: flex-start;
+    align-items: flex-start;
+   /* border: 1px solid red;*/
+    margin: 5px;
+}
+
+.container-left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    align-items: flex-start;
+    /*border: 1px solid red;*/
+    margin: 5px;
+}
+
+
+.container-row {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+    /*border: 1px solid steelblue;*/
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.display-block {
+    display: block;
+}
+
+.display-none {
+    display: none;
+}
