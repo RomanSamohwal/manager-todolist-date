@@ -1,11 +1,13 @@
 import React from 'react';
+import './Button.css'
 
 type ButtonType = {
-    direction: string
+    name: string
+    onHandle: () => void
 }
 
 export const Button = (props: ButtonType) => {
-    return <div>
-        <button onClick={() => {}}>{props.direction}</button>
+    return <div className='button'>
+        <button onClick={props.onHandle}>{props.name}</button>
     </div>
 }

@@ -10,11 +10,11 @@ type PropsType = {
 export const SelectComponent = (props: PropsType) => {
     return <div>
         <div className='panel-selected'>
-            <Button direction={'<'}/>
+            <Button name={'<'} onHandle={()=>{}}/>
             <div onClick={() => {
                 props.onChangeFlag(!props.flag)
             }}>{'.......'}</div>
-            <Button direction={'>'}/>
+            <Button name={'>'} onHandle={()=>{}}/>
         </div>
     </div>
 }

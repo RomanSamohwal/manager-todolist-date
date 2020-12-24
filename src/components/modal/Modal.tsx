@@ -15,17 +15,11 @@ export const ModalEvent = () => {
         setShow(false)
     };
     return <>
-        <main>
-            <h1>
-                Hello
-            </h1>
             <Portal>
-                <ModalWindow show = {show}/>
-                {/*<Window show = {show}/>*/}
+                <ModalWindow show = {show} hideModal = {hideModal}/>
             </Portal>
-            <button type="button" onClick={showModal}>
-                open
+            <button type="button" onClick={showModal} >
+                add event
             </button>
-        </main>
     </>
 }

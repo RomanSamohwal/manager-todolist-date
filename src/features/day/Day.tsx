@@ -29,7 +29,6 @@ export const Day: React.FC = () => {
         '22.00 - 23.00',
         '23.00 - 24.00',
     ]
-
     return <div className='day-block'>
         <div className="grid-container">
             <div className='grid-time'>

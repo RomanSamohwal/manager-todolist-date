@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import moment from 'moment';
 import {Month} from './Month';
 import './Month.css'
-import {MonthSelected} from '../month_selected/MonthSelected';
 
 export const MonthContainer = () => {
 
@@ -36,9 +35,9 @@ export const MonthContainer = () => {
             <div>
                 <button onClick={() => setNextMonth()}>{'>'}</button>
             </div>
-            <div className='block_selected'>
+            {/*<div className='block_selected'>
                 {flag && <MonthSelected/>}
-            </div>
+            </div>*/}
         </div>
 
         <Month dayCurrent={dayCurrent} month={currentMonth.clone()}/>

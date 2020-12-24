@@ -1,64 +1,56 @@
 .container {
-    position:fixed;
+    position: fixed;
     width: 400px;
-    height: 300px;
+    height: 400px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     background: white;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
    /* border: 1px solid black;*/
 }
 
-.span, input, button, div {
+.span, input, button {
     display: block;
-    margin: 10px;
 }
 
-/*input {
+input {
     padding: 0;
-    margin: 0;
-    border: 1px solid black;
-   !* border: none;*!
-}*/
-
-.container-right {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    justify-content: flex-start;
-    align-items: flex-start;
-   /* border: 1px solid red;*/
-    margin: 5px;
+    margin: 0 ;
 }
-
-.container-left {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    justify-content: center;
-    align-items: flex-start;
-    /*border: 1px solid red;*/
-    margin: 5px;
-}
-
 
 .container-row {
     display: flex;
-    width: 90%;
-    align-items: center;
+    width: 100%;
     justify-content: space-between;
-    /*border: 1px solid steelblue;*/
+    /*border: 1px solid green;*/
 }
 
+.container-row span {
+    display: flex;
+    width: 40%;
+   /* border: 3px solid green;*/
+    justify-content: flex-end;
+}
+.container-row input{
+    width: 50%;
+}
+
+.container-time {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+   /* border: 1px solid red;*/
+}
 
 .modal {
     position: fixed;
     top: 0;
     left: 0;
-    width:100%;
+    width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
 }

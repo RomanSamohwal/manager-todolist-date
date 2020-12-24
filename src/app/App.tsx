@@ -1,19 +1,8 @@
 import React from 'react';
-import {ModalEvent} from '../components/modal/Modal';
-import {ModalWindow} from '../components/modal/Window';
+import {Main} from './Main';
 
-function App() {
-    return (
-        <div>
-           {/* <MonthContainer/>*/}
-           {/* <Test/>*/}
-           {/*<WeekContainer/>*/}
-         {/* <DayContainer/>*/}
-        {/* <DayContainer/>*/}
-            <ModalEvent/>
-          {/* <ModalWindow/>*/}
-        </div>
-    );
+export const App = () => {
+    return <Main/>
 }
 
 export default App;
