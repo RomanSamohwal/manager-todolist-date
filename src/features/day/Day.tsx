@@ -29,23 +29,21 @@ export const Day: React.FC = () => {
         '22.00 - 23.00',
         '23.00 - 24.00',
     ]
-    return <div className='day-block'>
-        <div className="grid-container">
-            <div className='grid-time'>
-                {time.map(t => {
+    return <div className="grid-container">
+        <div className='grid-time'>
+            {time.map(t => {
+                return <div className='grid-item'>
+                    {t}
+                </div>
+            })}
+        </div>
+        <div className='grid-day'>
+            {task.map(d => {
                     return <div className='grid-item'>
-                        {t}
+                        {d}
                     </div>
-                })}
-            </div>
-            <div className='grid-day'>
-                {task.map(d => {
-                        return <div className='grid-item'>
-                            {d}
-                        </div>
-                    }
-                )}
-            </div>
+                }
+            )}
         </div>
     </div>
 }

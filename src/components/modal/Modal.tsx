@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Portal} from './Portal';
 import './Modal.css'
-import { ModalWindow } from './Window';
+import {ModalWindow} from './Window';
+import {ButtonComponent} from '../button/Button';
 
 export const ModalEvent = () => {
 
@@ -14,12 +15,10 @@ export const ModalEvent = () => {
     const hideModal = () => {
         setShow(false)
     };
-    return <>
-            <Portal>
-                <ModalWindow show = {show} hideModal = {hideModal}/>
-            </Portal>
-            <button type="button" onClick={showModal} >
-                add event
-            </button>
-    </>
+    return <div>
+        <ButtonComponent onHandle={showModal} name={'+ Add new'}/>
+        <Portal>
+            <ModalWindow show={show} hideModal={hideModal}/>
+        </Portal>
+    </div>
 }

@@ -25,7 +25,7 @@ export const MonthContainer = () => {
     }
 
     return <div>
-        <div className='block_change_months'>
+      {/*  <div className='block_change_months'>
             <div>
                 <button onClick={() => setPrevMonth()}>{'<'}</button>
             </div>
@@ -35,10 +35,7 @@ export const MonthContainer = () => {
             <div>
                 <button onClick={() => setNextMonth()}>{'>'}</button>
             </div>
-            {/*<div className='block_selected'>
-                {flag && <MonthSelected/>}
-            </div>*/}
-        </div>
+        </div>*/}
 
         <Month dayCurrent={dayCurrent} month={currentMonth.clone()}/>
     </div>

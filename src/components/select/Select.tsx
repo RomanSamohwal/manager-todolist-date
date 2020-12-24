@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button} from '../button/Button';
 import './Select.css'
+import {ButtonComponent} from '../button/Button';
 
 type PropsType = {
     onChangeFlag: (flag: boolean) => void
@@ -8,13 +8,13 @@ type PropsType = {
 }
 
 export const SelectComponent = (props: PropsType) => {
-    return <div>
-        <div className='panel-selected'>
-            <Button name={'<'} onHandle={()=>{}}/>
-            <div onClick={() => {
-                props.onChangeFlag(!props.flag)
-            }}>{'.......'}</div>
-            <Button name={'>'} onHandle={()=>{}}/>
-        </div>
+    return <div className='panel-selected'>
+        <ButtonComponent name={'<'} onHandle={() => {
+        }}/>
+        <div onClick={() => {
+            props.onChangeFlag(!props.flag)
+        }}>{'.......'}</div>
+        <ButtonComponent name={'>'} onHandle={() => {
+        }}/>
     </div>
 }
