@@ -1,8 +1,46 @@
 import React from 'react';
 import './Day.css'
+import styled from 'styled-components';
+import {EventType} from '../../utils/typesEvent';
+import {Event} from '../../components/event/Event';
+
+export const GridWrapperDay = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+    "t d";
+    border: 1px solid  #404040;;
+    box-sizing: border-box;
+    margin: -1px -1px 0 0;
+    height: 90vh;
+`
+export const GridWrapperColumn = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(24,1fr);
+    grid-area: ${(props: any) => props.area};
+    border: 1px solid  #404040;;
+    box-sizing: border-box;
+    margin: -1px -1px 0 0;
+`
+export const CellWrapperDay = styled.div`
+    min-width: 10vw;
+    min-height: 6px;
+    color: white;
+    text-align: center;
+    border: 1px solid #404040;;
+    background-color: #222327;
+    box-sizing: border-box;
+    margin: -1px -1px 0 0;
+`
+type EventsType = EventType[]
+type HourCellType = {
+    isEvent: boolean
+    eventsKey?: EventsType
+}
+type HoursCellType = HourCellType[]
 
 export const Day: React.FC = () => {
-    const task = [...Array(24)]
     const time = [
         '00.00 - 01.00',
         '01.00 - 02.00',
@@ -29,21 +67,64 @@ export const Day: React.FC = () => {
         '22.00 - 23.00',
         '23.00 - 24.00',
     ]
-    return <div className="grid-container">
-        <div className='grid-time'>
+    const task = [...Array(24)]
+
+    for (let i = 0; i < task.length; i++) {
+        task[i] = {isEvent: false}
+        if (i === 1) {
+            task[i] = {
+                isEvent: true, eventsKey: [{
+                    text: 'Meeting',
+                    timeFrom: '01.45',
+                    timeTo: '04.25',
+                    time: 300,
+                    startTime: 75,
+                    left: 1
+                }, {
+                    text: 'Meeting2',
+                    timeFrom: '01.00',
+                    timeTo: '02.30',
+                    time: 50,
+                    startTime: 0,
+                    left: 35
+                }]
+            }
+        }
+    }
+
+    console.log(task)
+
+    return <GridWrapperDay>
+        <GridWrapperColumn
+            // @ts-ignore
+            area = {'t'}>
             {time.map(t => {
-                return <div className='grid-item'>
+                return <CellWrapperDay>
                     {t}
-                </div>
+                </CellWrapperDay>
             })}
-        </div>
-        <div className='grid-day'>
+        </GridWrapperColumn>
+        <GridWrapperColumn
+            // @ts-ignore
+            area = {'d'}>
             {task.map(d => {
-                    return <div className='grid-item'>
-                        {d}
-                    </div>
+                    return <CellWrapperDay>
+                        <div className='hour' style={{position: 'relative'}}>
+                        {/*<div className='minute'>15</div>
+                        <div className='minute'>30</div>
+                        <div className='minute'>45</div>
+                        <div className='minute'>60</div>*/}
+                            {d.isEvent &&
+                            // @ts-ignore
+                            d.eventsKey.map((e: EventType) => {
+                                    return <Event height={e.time} top={e.startTime}
+                                                  text={e.text} left={e.left}/>
+                                }
+                            )}
+                        </div>
+                    </CellWrapperDay>
                 }
             )}
-        </div>
-    </div>
+        </GridWrapperColumn>
+    </GridWrapperDay>
 }

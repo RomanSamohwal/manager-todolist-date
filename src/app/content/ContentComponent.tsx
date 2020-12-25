@@ -4,6 +4,7 @@ import {PATH} from '../header/Path';
 import {WeekContainer} from '../../features/week/WeekContainer';
 import {MonthContainer} from '../../features/month/MonthContainer';
 import {DayContainer} from '../../features/day/DayContainer';
+import {TestPosition} from '../../components/event/Test';
 
 export const ContentComponent = () => {
     return <>

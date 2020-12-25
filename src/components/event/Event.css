@@ -1,5 +1,6 @@
 .event-container {
-    min-width: 20vw;
+    min-width: 15vw;
+    min-height: 80%;
     background-color: green;
     border-radius: 20px;
     text-align: center;

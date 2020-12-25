@@ -10,6 +10,8 @@ type HourCellType = {
 }
 type HoursCellType = HourCellType[]
 
+
+
 let hoursCell: HoursCellType = [{isEvent: false},
     {
         isEvent: true, eventsKey: [{
@@ -23,7 +25,7 @@ let hoursCell: HoursCellType = [{isEvent: false},
             text: 'Meeting2',
             timeFrom: '01.00',
             timeTo: '02.30',
-            time: 50,
+            time: 90,
             startTime: 0,
             left: 35
         }]
@@ -45,10 +47,10 @@ export const TestPosition: React.FC = () => {
                 {hoursCell.map((h,i) => {
                     return <div className='grid-item' key={i+'qaws'}>
                         <div className='hour' style={{position: 'relative'}}>
-                             {/* <div className='minute'>15</div>
+                              <div className='minute'>15</div>
                               <div className='minute'>30</div>
                               <div className='minute'>45</div>
-                              <div className='minute'>60</div>*/}
+                              <div className='minute'>60</div>
                             {h.isEvent &&
                             // @ts-ignore
                             h.eventsKey.map((e: EventType) => {
