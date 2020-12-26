@@ -7,6 +7,7 @@ type PropsType = {
     flag: boolean
     onPrevHandler: () => void
     onNextHandler: () => void
+    currentMonth: any
 }
 
 export const SelectComponent = (props: PropsType) => {
@@ -14,7 +15,7 @@ export const SelectComponent = (props: PropsType) => {
         <ButtonComponent name={'<'} onHandle={props.onPrevHandler}/>
         <div onClick={() => {
             props.onChangeFlag(!props.flag)
-        }}>{'.......'}</div>
+        }}>{props.currentMonth.format('M')}-{props.currentMonth.format('Y')}</div>
         <ButtonComponent name={'>'} onHandle={props.onNextHandler}/>
     </div>
 }

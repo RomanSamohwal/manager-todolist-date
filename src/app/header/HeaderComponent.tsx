@@ -3,7 +3,6 @@ import {Redirect} from './Redirect';
 import {ModalEvent} from '../../components/modal/Modal';
 import {SelectContainer} from '../../components/select/SelectContainer';
 import styled from 'styled-components';
-import {ContentComponent} from '../content/ContentComponent';
 
 const Header = styled.div`
    display: flex;
@@ -11,13 +10,17 @@ const Header = styled.div`
    margin: 5px;
 `
 
-export const HeaderComponent = () => {
-    return <>
-        <Header>
+export const HeaderComponent = (props: any) => {
+
+    return <Header>
             <Redirect/>
-            <SelectContainer/>
+            <SelectContainer
+                setPrevWeek={props.setPrevWeek}
+                setNextWeek={props.setNextWeek}
+                setPrevMonth={props.setPrevMonth}
+                setNextMonth={props.setNextMonth}
+                currentMonth={props.currentMonth}
+            />
             <ModalEvent/>
         </Header>
-        <ContentComponent/>
-    </>
 }

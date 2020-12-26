@@ -1,8 +1,11 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import thunkMiddleware from 'redux-thunk'
 import {useDispatch} from 'react-redux';
+import {appReducer} from './app-reducer';
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+    app: appReducer
+})
 
 export type RootReducerType = typeof rootReducer
 

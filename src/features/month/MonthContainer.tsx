@@ -1,44 +1,14 @@
-import React, {useState} from 'react';
-import moment from 'moment';
+import React from 'react';
 import {Month} from './Month';
 import './Month.css'
 
-export const MonthContainer = () => {
+export const MonthContainer = (props: any) => {
 
-    moment.updateLocale('ru', {week: {dow: 1}})
-    const dayStart = moment().startOf('month').startOf('week')
-    const monthStart = moment().startOf('month')
-    type DayCurrentType = typeof dayStart
-
-    let [dayCurrent, setDayCurrent] = useState<DayCurrentType>(dayStart)
-    let [currentMonth, setCurrentMonth] = useState<DayCurrentType>(monthStart)
-    let [flag, setFlag] = useState(false)
-
-    const setPrevMonth = () => {
-        let month = currentMonth.subtract(1, 'month').clone()
-        setDayCurrent(month.startOf('week'))
-    }
-
-    const setNextMonth = () => {
-        let month = currentMonth.add(1, 'month').clone()
-        setDayCurrent(month.startOf('week'))
-    }
+    let dayCurrent = props.day
+    let currentMonth = props.month
 
     return <div>
-      {/*  <div className='block_change_months'>
-            <div>
-                <button onClick={() => setPrevMonth()}>{'<'}</button>
-            </div>
-            <div onClick={() => setFlag(!flag)}>
-                {currentMonth.format('M')}-{currentMonth.format('Y')}
-            </div>
-            <div>
-                <button onClick={() => setNextMonth()}>{'>'}</button>
-            </div>
-        </div>*/}
-
         <Month dayCurrent={dayCurrent} month={currentMonth.clone()}/>
     </div>
 }
-
 
