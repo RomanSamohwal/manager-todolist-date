@@ -12,20 +12,21 @@ export const SelectContainer = (props: any) => {
 
 
     const onPrevHandler = () => {
-       /* props.setPrevMonth()*/
-        props.setPrevWeek()
+        props.setPrevMonth()
+       /* props.setPrevWeek()*/
     }
 
     const onNextHandler = () => {
-       /* props.setNextMonth()*/
-        props.setNextWeek()
+        props.setNextMonth()
+      /*  props.setNextWeek()*/
     }
 
     return <div style={{position: 'relative'}}>
         <SelectComponent flag={show} onChangeFlag={onShowHandler}
                          onPrevHandler={onPrevHandler}
                          onNextHandler={onNextHandler}
-                         currentMonth={props.currentMonth}
+                         monthCurrent={props.monthCurrent}
+                         weekCurrent = {props.weekCurrent}
         />
         {show && <SelectWindow/>}
     </div>

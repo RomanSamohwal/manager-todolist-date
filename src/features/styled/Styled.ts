@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {CSSObject, StyledComponentBase} from 'styled-components';
 
 export const GridWrapper = styled.div`
     height: 92vh;

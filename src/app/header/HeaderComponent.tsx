@@ -19,7 +19,8 @@ export const HeaderComponent = (props: any) => {
                 setNextWeek={props.setNextWeek}
                 setPrevMonth={props.setPrevMonth}
                 setNextMonth={props.setNextMonth}
-                currentMonth={props.currentMonth}
+                monthCurrent={props.monthCurrent}
+                weekCurrent = {props.weekCurrent}
             />
             <ModalEvent/>
         </Header>

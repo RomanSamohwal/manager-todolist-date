@@ -1,13 +1,13 @@
 import React from 'react';
 import './Week.css'
 import {CellWrapper, DayWrapper, GridWrapper, RowInCell} from '../styled/Styled';
+import moment from 'moment';
 
 export const Week = (props: any) => {
     const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    const week = props.weekCurrent.clone().subtract(1, 'day');
- /*   console.log(week)*/
-    const days = [...Array(7)].map(() => week.add(1, 'day').clone())
-    /*console.log(days)*/
+    let isToday = moment().date()
+    let isMonth = props.month.clone()
+
     return <GridWrapper
         // @ts-ignore
         rows = {'1fr 7fr'}>
@@ -23,10 +23,17 @@ export const Week = (props: any) => {
                 </RowInCell>
             </CellWrapper>
         })}
-        {days.map((d,i) => {
-            return <CellWrapper key = {i+''}>
+        {props.currentWeekArray.map((d: any,i: any) => {
+            return <CellWrapper key = {d.format('DDDMMMYYYY')}
+                // @ts-ignore
+                isWeekend={d.day() === 6 || d.day() === 0}
+                                isDay={d.format('D') == isToday && isMonth.format('M') == d.format('M')}
+            >
                 <RowInCell>
-                    <DayWrapper>
+                    <DayWrapper
+                        // @ts-ignore
+                        month={isMonth.format('M') == d.format('M')}
+                    >
                         {d.format('D')}
                     </DayWrapper>
                 </RowInCell>

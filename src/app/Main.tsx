@@ -9,25 +9,23 @@ export const Main = () => {
     moment.updateLocale('ru', {week: {dow: 1}})
     const dayStartMonthWeek = moment().startOf('month').startOf('week')
     const weekStart = moment().startOf('week')
-    const monthStart = moment().startOf('month')
-    console.log('weekStart')
-    console.log(weekStart)
 
+    const monthStart = moment().startOf('month')
     type DayCurrentType = typeof dayStartMonthWeek
 
 
-    let [dayCurrent, setDayCurrent] = useState<DayCurrentType>(dayStartMonthWeek)
-    let [monthCurrent, setMonthCurrent] = useState<DayCurrentType>(monthStart)
-    let [weekCurrent, setWeekCurrent] = useState<DayCurrentType>(weekStart)
+    let [dayCurrent, setDayCurrent] = useState<DayCurrentType>(dayStartMonthWeek.clone())
+    let [monthCurrent, setMonthCurrent] = useState<DayCurrentType>(monthStart.clone())
+    let [weekCurrent, setWeekCurrent] = useState<DayCurrentType>(weekStart.clone())
 
     let setPrevWeek = () => {
-        let week = weekCurrent.subtract(1, 'week').clone()
-        setWeekCurrent(week)
+        let weekPrevStart = weekCurrent.subtract(1, 'week').clone()
+        setWeekCurrent(weekPrevStart)
     }
 
     let setNextWeek = () => {
-        let week = weekCurrent.add(1, 'week').clone()
-        setWeekCurrent(week)
+        let weekNextStart = weekCurrent.add(1, 'week').clone()
+        setWeekCurrent(weekNextStart)
     }
 
     let setPrevMonth = () => {
@@ -48,7 +46,9 @@ export const Main = () => {
                 setNextMonth={setNextMonth}
                 setPrevWeek={setPrevWeek}
                 setNextWeek={setNextWeek}
-                currentMonth={monthCurrent}/>
+                monthCurrent={monthCurrent}
+                weekCurrent = {weekCurrent}
+            />
             <ContentComponent
                 day={dayCurrent}
                 month={monthCurrent}
