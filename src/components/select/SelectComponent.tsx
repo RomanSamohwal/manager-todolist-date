@@ -12,7 +12,8 @@ type PropsType = {
 }
 
 export const SelectComponent = (props: PropsType) => {
-
+    const MONTH = ['January', 'February', 'March', 'April', 'May',
+        'June', 'July', 'August', 'September','October', 'November', 'December'];
     //props.monthCurrent.format('M')}-{props.monthCurrent.format('Y')
      console.log(props.weekCurrent)
 
@@ -26,9 +27,9 @@ export const SelectComponent = (props: PropsType) => {
         <ButtonComponent name={'<'} onHandle={props.onPrevHandler}/>
         <div onClick={() => {
             props.onChangeFlag(!props.flag)
-        }}>{startWeek.format('D')}-{startWeek.format('M')}-{startWeek.format('Y')}
-            --
-            {endWeek.format('D')}-{endWeek.format('M')}-{endWeek.format('Y')}
+        }}>{startWeek.format('D')} { MONTH[startWeek.format('M')-1]} {startWeek.format('Y')}
+            -
+            {endWeek.format('D')} { MONTH[endWeek.format('M')-1]} {endWeek.format('Y')}
         </div>
         <ButtonComponent name={'>'} onHandle={props.onNextHandler}/>
     </div>

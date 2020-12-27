@@ -47,7 +47,7 @@ export const Main = () => {
                 setPrevWeek={setPrevWeek}
                 setNextWeek={setNextWeek}
                 monthCurrent={monthCurrent}
-                weekCurrent = {weekCurrent}
+                weekCurrent={weekCurrent}
             />
             <ContentComponent
                 day={dayCurrent}

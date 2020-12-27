@@ -12,13 +12,13 @@ export const SelectContainer = (props: any) => {
 
 
     const onPrevHandler = () => {
-        props.setPrevMonth()
-       /* props.setPrevWeek()*/
+        /*props.setPrevMonth()*/
+        props.setPrevWeek()
     }
 
     const onNextHandler = () => {
-        props.setNextMonth()
-      /*  props.setNextWeek()*/
+       /* props.setNextMonth()*/
+        props.setNextWeek()
     }
 
     return <div style={{position: 'relative'}}>
