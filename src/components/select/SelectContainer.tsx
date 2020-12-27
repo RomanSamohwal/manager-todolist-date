@@ -8,17 +8,16 @@ export const SelectContainer = (props: any) => {
         setShow(flag)
     }
 
-
-
-
     const onPrevHandler = () => {
         /*props.setPrevMonth()*/
-        props.setPrevWeek()
+        /*props.setPrevWeek()*/
+        props.setPrevDay()
     }
 
     const onNextHandler = () => {
        /* props.setNextMonth()*/
-        props.setNextWeek()
+        /*props.setNextWeek()*/
+        props.setNextDay()
     }
 
     return <div style={{position: 'relative'}}>
@@ -27,6 +26,7 @@ export const SelectContainer = (props: any) => {
                          onNextHandler={onNextHandler}
                          monthCurrent={props.monthCurrent}
                          weekCurrent = {props.weekCurrent}
+                         dayCurrent = {props.dayCurrent}
         />
         {show && <SelectWindow/>}
     </div>

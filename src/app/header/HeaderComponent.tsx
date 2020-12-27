@@ -13,15 +13,18 @@ const Header = styled.div`
 export const HeaderComponent = (props: any) => {
 
     return <Header>
-            <Redirect/>
-            <SelectContainer
-                setPrevWeek={props.setPrevWeek}
-                setNextWeek={props.setNextWeek}
-                setPrevMonth={props.setPrevMonth}
-                setNextMonth={props.setNextMonth}
-                monthCurrent={props.monthCurrent}
-                weekCurrent = {props.weekCurrent}
-            />
-            <ModalEvent/>
-        </Header>
+        <Redirect/>
+        <SelectContainer
+            dayCurrent = {props.dayCurrent}
+            setPrevDay={props.setPrevDay}
+            setNextDay={props.setNextDay}
+            setPrevWeek={props.setPrevWeek}
+            setNextWeek={props.setNextWeek}
+            setPrevMonth={props.setPrevMonth}
+            setNextMonth={props.setNextMonth}
+            monthCurrent={props.monthCurrent}
+            weekCurrent={props.weekCurrent}
+        />
+        <ModalEvent/>
+    </Header>
 }
