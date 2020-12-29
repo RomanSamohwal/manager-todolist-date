@@ -118,7 +118,7 @@ export const Day: React.FC = () => {
                             // @ts-ignore
                             d.eventsKey.map((e: EventType) => {
                                     return <Event height={e.time} top={e.startTime}
-                                                  text={e.text} left={e.left}/>
+                                                   left={e.left}/>
                                 }
                             )}
                         </div>

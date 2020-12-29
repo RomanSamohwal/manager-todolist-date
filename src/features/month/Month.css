@@ -1,13 +1,23 @@
-.block_change_months {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 2;
+.block_event {
+    width: 100%;
+    height: 85%;
+    /*border: 1px solid red;*/
 }
 
-.block_selected {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+.event {
+    font-size: 1.7vh;
+    width: 100%;
+    min-height: 25%;
+    text-align: center;
+    /*  border: 1px solid blue;*/
+    background-color: green;
+    border-radius: 25px;
+    margin: 1px;
+}
+
+.more{
+    width: 100%;
+    min-height: 20%;
+    text-align: center;
+    font-size: 1.7vh;
 }

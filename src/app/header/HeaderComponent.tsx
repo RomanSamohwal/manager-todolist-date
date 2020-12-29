@@ -15,7 +15,7 @@ export const HeaderComponent = (props: any) => {
     return <Header>
         <Redirect/>
         <SelectContainer
-            dayCurrent = {props.dayCurrent}
+            dayCurrent={props.dayCurrent}
             setPrevDay={props.setPrevDay}
             setNextDay={props.setNextDay}
             setPrevWeek={props.setPrevWeek}

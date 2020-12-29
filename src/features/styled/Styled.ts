@@ -1,7 +1,7 @@
 import styled, {CSSObject, StyledComponentBase} from 'styled-components';
 
 export const GridWrapper = styled.div`
-    height: 92vh;
+    height: 100vh;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: ${(props: any) => props.rows};
@@ -12,7 +12,7 @@ export const GridWrapper = styled.div`
 export const CellWrapper = styled.div`
     cursor: pointer;
     min-width: 10vw;
-    min-height: 13vh;
+    min-height: 15vh;
     color: white;
     border: ${(props: any) => props.isDay ? '1px solid #2d45d8' : ' '};
     background-color: ${(props: any) => props.isWeekend ? '#272829' : '#1E1F21'} 
@@ -22,7 +22,7 @@ export const RowInCell = styled.div`
     justify-content: ${(props: any) => props.justifyContent ? props.justifyContent : 'flex-start'}
 `
 export const DayWrapper = styled.div`
-    height: 33px;
+    height: 13px;
     width: 33px;
     display: flex;
     align-items: center;

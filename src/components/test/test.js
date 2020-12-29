@@ -108,10 +108,4 @@ export const Test = () => {
     return <div>
 
     </div>
-}/*  const day = moment().startOf('month')
-    let diffBetweenDay = 6 - (6 - day.weekday())
-    if(diffBetweenDay === 0){
-        diffBetweenDay = 1
-    }
-    let month = day.clone().subtract(diffBetweenDay, 'day')
-    let dayStart = month.startOf('week')*/
+}

@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Month.css'
 import moment from 'moment';
 import {CellWrapper, DayWrapper, GridWrapper, RowInCell} from '../styled/Styled';
+import {DayType, EventType} from '../../utils/typesEvent';
 
 export const Month = React.memo((props: any) => {
+
     const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const day = props.dayCurrent.clone().subtract(1, 'day');
     const daysArray = [...Array(42)].map(() => day.add(1, 'day').clone())
+
     let isToday = moment().date()
     let isMonth = props.month.clone()
+    let events = props.events
+    console.log(events)
+    let daysObjectArray = props.daysObjectArray
 
     return <GridWrapper
         // @ts-ignore
@@ -44,6 +50,32 @@ export const Month = React.memo((props: any) => {
                             {dayItem.format('D')}
                         </DayWrapper>
                     </RowInCell>
+                    <div className='block_event'>
+                        {daysObjectArray.map((d: DayType) => {
+                                if (d.date.year === +dayItem.format('Y') &&
+                                    d.date.month === +dayItem.format('M') &&
+                                    d.date.day === +dayItem.format('D')) {
+                                    return <>
+                                        {events[d.id].map((e: any, i: any) => {
+                                                if (i < 3) {
+                                                    return <div className='event'>
+                                                        <span>{e.name}</span>
+                                                        <span>{e.timeFrom}</span>
+                                                        <span>-</span>
+                                                        <span>{e.timeTo}</span>
+                                                    </div>
+                                                } else {
+                                                   return <div className='more' onClick={()=>{
+                                                       alert('more')
+                                                   }}>{'2+ more'}</div>
+                                                }
+                                            }
+                                        )}
+                                    </>
+                                }
+                            }
+                        )}
+                    </div>
                 </CellWrapper>
             ))
         }
