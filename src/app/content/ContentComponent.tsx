@@ -14,7 +14,7 @@ export const ContentComponent = (props: any) => {
     return <>
         <Switch>
             <Route path={PATH.MONTH} render={() => <MonthContainer month = {month} day = {day} events = {events} daysObjectArray = {daysObjectArray} />}/>
-            <Route path={PATH.WEEK} render={() => <WeekContainer week = {week} month = {month}/>}/>
+            <Route path={PATH.WEEK} render={() => <WeekContainer week = {week} month = {month}/> }/>
             <Route path={PATH.DAY} render={() => <DayContainer/>}/>
         </Switch>
     </>

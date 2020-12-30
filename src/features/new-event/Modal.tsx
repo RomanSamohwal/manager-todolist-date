@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
     position:fixed;
-    min-width: 35vw;
+    width: 420px;
     background: white;
     top:50%;
     left:50%;
@@ -16,7 +16,10 @@ export const Modal = (props: any) => {
     const showHideClassName = props.show ? "modal display-block" : "modal display-none";
     return <div className={showHideClassName}>
         <ModalWrapper>
-            <div style={{minHeight: '10vh'}}>New event</div>
+            <div style={{height: '40px', display: 'flex',
+                borderBottom: '1px solid black', justifyContent: 'flex-start' ,alignItems: 'center'}}>
+                <div style={{marginLeft: '5px'}}>New event</div>
+            </div>
             <EventFormik/>
         </ModalWrapper>
     </div>
