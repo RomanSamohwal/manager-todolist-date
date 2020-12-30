@@ -1,7 +1,7 @@
 import React from 'react';
-import { EventFormik } from './EventFormik';
 import './Modal.css'
 import styled from 'styled-components';
+import {EventFormik} from './EventFormik';
 
 export const ModalWrapper = styled.div`
     position:fixed;
