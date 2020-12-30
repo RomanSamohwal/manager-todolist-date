@@ -3,10 +3,12 @@ import thunkMiddleware from 'redux-thunk'
 import {useDispatch} from 'react-redux';
 import {appReducer} from './app-reducer';
 import {daysReducer} from './day-reducer';
+import {eventsReducer} from './event-reducer';
 
 const rootReducer = combineReducers({
     app: appReducer,
-    days:daysReducer
+    days: daysReducer,
+    events: eventsReducer
 })
 
 export type RootReducerType = typeof rootReducer

@@ -4,6 +4,9 @@ import {HashRouter} from 'react-router-dom';
 import {ContentComponent} from './content/ContentComponent';
 import moment from 'moment';
 import {createDay, createEvent} from '../utils/createEvent';
+import {EventsType} from '../utils/typesEvent';
+
+
 
 export const Main = () => {
 
@@ -17,10 +20,10 @@ export const Main = () => {
     let DayObject1 = createDay(1,1,2021)
     let DaysObject = [DayObject,DayObject1]
 
-    let EventsArray = {
-        [DayObject.id]: [Event1, Event2,Event2,Event2],
-        [DayObject1.id]: [Event1, Event2,Event2,Event1,Event2]
 
+    let EventsArray: EventsType = {
+        [DayObject.id]: [Event1, Event2, Event2, Event2],
+        [DayObject1.id]: [Event1, Event2, Event2, Event1, Event2]
     }
 
     let [daysObjectArray, setDay] = useState(DaysObject)

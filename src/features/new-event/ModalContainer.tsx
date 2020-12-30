@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {Portal} from './Portal';
-import './Modal.css'
-import {ModalWindow} from './Window';
-import {ButtonComponent} from '../button/Button';
+import {ButtonComponent} from '../../components/button/Button';
+import {Portal} from '../../components/portal/Portal';
+import {Modal} from './Modal';
+/*import './Modal.css'*/
 
-export const ModalEvent = () => {
+export const ModalContainer = () => {
 
     let [show, setShow] = useState(false)
 
@@ -18,7 +18,7 @@ export const ModalEvent = () => {
     return <div>
         <ButtonComponent onHandle={showModal} name={'+ Add new'}/>
         <Portal>
-            <ModalWindow show={show} hideModal={hideModal}/>
+            <Modal show={show} hideModal={hideModal}/>
         </Portal>
     </div>
 }

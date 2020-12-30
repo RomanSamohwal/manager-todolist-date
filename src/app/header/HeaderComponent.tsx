@@ -1,8 +1,8 @@
 import React from 'react';
 import {Redirect} from './Redirect';
-import {ModalEvent} from '../../components/modal/Modal';
 import {SelectContainer} from '../../components/select/SelectContainer';
 import styled from 'styled-components';
+import { ModalContainer } from '../../features/new-event/ModalContainer';
 
 const Header = styled.div`
    display: flex;
@@ -25,6 +25,6 @@ export const HeaderComponent = (props: any) => {
             monthCurrent={props.monthCurrent}
             weekCurrent={props.weekCurrent}
         />
-        <ModalEvent/>
+        <ModalContainer/>
     </Header>
 }
