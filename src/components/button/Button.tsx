@@ -3,9 +3,10 @@ import {Button} from 'antd';
 
 type ButtonType = {
     name: string
-    onHandle: () => void
+    onHandle?: () => void
+    htmlType?: "button" | "submit" | "reset" | undefined
 }
 
 export const ButtonComponent = (props: ButtonType) => {
-    return <Button onClick={props.onHandle}>{props.name}</Button>
+    return <Button onClick={props.onHandle} htmlType ={props.htmlType}>{props.name}</Button>
 }

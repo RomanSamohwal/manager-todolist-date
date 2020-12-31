@@ -10,6 +10,10 @@ export const ModalWrapper = styled.div`
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
+    
+    @media screen and (max-width: 600px) {
+    width: 90vw;
+    }
 `
 
 export const Modal = (props: any) => {
