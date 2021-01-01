@@ -1,11 +1,11 @@
 import React from 'react';
 import './Modal.css'
-import {InputTime, InputWrapper} from '../../components/input/InputTime';
+import {InputComponent, InputTime} from '../../components/input/InputTime';
 import { useFormik } from 'formik';
 import Input from 'antd/lib/input';
 import {ButtonComponent} from '../../components/button/Button';
-
-let leap_year = !/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/
+import {FormikBlock, FormikInnerBlock, FormikWrapper,Error } from '../styled/Styled';
+import { InputWrapper } from '../../components/button/styled';
 
 export const EventFormik = () => {
 
@@ -17,27 +17,26 @@ export const EventFormik = () => {
         },
     })
     return <form onSubmit={formik.handleSubmit}>
-        <div className='formikWrapper'>
-            <div className='formikBlock'>
-                <div className='formikInnerBlock'>
+        <FormikWrapper>
+            <FormikBlock>
+                <FormikInnerBlock>
                     <span>Name</span>
                     <div>
                         <Input id ='name' name='name'
                                type="text"
                                onChange={formik.handleChange}
                                value={formik.values.name}/>
-                        {formik.errors.name ? <div className='error'>{formik.errors.name}</div> : null}
+                        {formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
                     </div>
-                </div>
-                <div className='formikInnerBlock'>
+                </FormikInnerBlock>
+                <FormikInnerBlock>
                     <span>Description</span>
-                    <div>
-                        <Input id='description' name='description'
-                               type="text" onChange={formik.handleChange}
-                               value={formik.values.description}/>
-                        {formik.errors.description ? <div className='error'>{formik.errors.description}</div> : null}
-                    </div>
-                </div>
+                    <InputComponent id = {'description'} name = {'description'}
+                       type = {'text'} onChange = {formik.handleChange}
+                                    value = {formik.values.description}/>
+                        {formik.errors.description ? <Error>{formik.errors.description}</Error> : null}
+
+                </FormikInnerBlock>
                 <div className='formikInnerBlock'>
                     <span>Date</span>
                     <div>
@@ -84,11 +83,11 @@ export const EventFormik = () => {
                         {formik.errors.timeToMinute ? <div className='error'>{formik.errors.timeToMinute}</div> : null}
                     </InputWrapper>
                 </div>
-            </div>
+            </FormikBlock>
             <div className='formikBlockButton'>
                 <ButtonComponent name = {'create'} htmlType={'submit'}/>
             </div>
-        </div>
+        </FormikWrapper>
     </form>
 }
 

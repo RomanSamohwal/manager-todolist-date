@@ -1,42 +1,12 @@
-/*
-.container {
-    position:fixed;
-    min-width: 30vw;
-    min-height: 60vh;
-    background: white;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-}
-*/
-
-.formikWrapper {
-    width: 100%;
-  /*  min-height: 55vh;*/
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  /*  border: 1px solid gold;*/
-}
-
-.formikBlock{
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    position: relative;
-    /*border: 1px solid red;*/
-}
 
 .formikInnerBlock {
     display: flex;
     flex-direction: row;
-    /*border: 1px solid black;*/
     margin: 5px 0 5px 0;
 }
 
 .formikInnerBlock span{
+    width: 100%;
     display: block;
     margin-right: 50px;
 }
@@ -57,20 +27,21 @@
     width: 16vw;
     display: flex;
     justify-content: space-between;
-   /* border: 1px solid green;*/
 }
-
 
 .formikInnerBlockTime input{
     display: block;
     width: 6vw;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border: none;
 }
 
 
 .formikBlockButton{
     display: flex;
     width: 100%;
-   /* border: 1px solid #96417b;*/
     align-items: center;
     justify-content: flex-end;
     margin-top: 20px;
@@ -114,33 +85,35 @@
     bottom: -50px;
     right: 20px;
     color: red;
-   /* border: 1px solid black;*/
 }
 
 @media screen and (max-width: 600px) {
+
     .formikBlock {
         width: 100%;
         align-items: center;
     }
 
-    .formikInnerBlock{
+    .formikInnerBlock {
         width: 100%;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
     }
 
-    .formikInnerBlock span{
+    .formikInnerBlock span {
         width: 30%;
         font-size: 10px;
-        margin-left: 0;
-        border: 1px solid darkslategrey;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
     .formikInnerBlock input {
-        width: 100%;
+        width: 188px;
+        margin-right: 5px;
     }
 
-    .formikInnerBlockTime input{
-        width: 50%;
+    .error {
+        font-size: 10px;
+        right: 37px;
     }
 }

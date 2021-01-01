@@ -6,7 +6,7 @@ import {Modal} from './Modal';
 
 export const ModalContainer = () => {
 
-    let [show, setShow] = useState(false)
+    let [show, setShow] = useState<boolean>(false)
 
     const showModal = () => {
         setShow(true)
