@@ -1,7 +1,7 @@
-import {DateType, DayType, EventType, MonthTypeNumber, yearType} from './typesEvent';
+import {DayType, EventType} from './typesEvent';
 
-export const createEvent = (timeFromHour: number, timeFromMinute: number, timeToHour: number,
-                            timeToMinute: number, name: string, description: string):
+export const createEvent = (timeFromHour: number = 0, timeFromMinute: number = 0, timeToHour: number = 0,
+                            timeToMinute: number = 0, name: string = '', description: string = ''):
     EventType => {
     let timeDifferent = (timeToHour * 60 + timeToMinute) - (timeFromHour * 60 + timeFromMinute);
     let timeDifferentPercent = Math.trunc(timeDifferent * 1.67)
@@ -11,19 +11,20 @@ export const createEvent = (timeFromHour: number, timeFromMinute: number, timeTo
         name: name,
         description: description,
         left: 5,
-        timeFrom: `${timeFromHour} : ${timeFromMinute}`,
-        timeTo: `${timeToHour} : ${timeToMinute}`,
+        timeFrom: `${timeFromHour}:${timeFromMinute}`,
+        timeTo: `${timeToHour}:${timeToMinute}`,
         time: timeDifferentPercent,
         startTime: startTime
     }
 }
 
-let event = createEvent(1, 30, 2,
-    30, 'meting1', 'meeting with my friend')
-
-export const createDay = (day: number, month: MonthTypeNumber, year: yearType): DayType => {
+export const createDay = (day: number, month: number, year: number): DayType => {
     return {
         date: {day, month, year},
         id: `${day}${month}${year}`
     }
+}
+
+export const ParseDate = (date: string) => {
+    return date.split('/')
 }

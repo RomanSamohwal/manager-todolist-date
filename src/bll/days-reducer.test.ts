@@ -1,7 +1,6 @@
 import {DateType, DayType} from '../utils/typesEvent';
 import {addDay, daysReducer} from './day-reducer';
 
-
 test('add new Days object', () => {
     const startDayState: Array<DayType> = []
 

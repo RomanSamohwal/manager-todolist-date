@@ -1,19 +1,27 @@
 import React from 'react';
 import './Modal.css'
-import {InputComponent, InputTime} from '../../components/input/InputTime';
-import { useFormik } from 'formik';
-import Input from 'antd/lib/input';
+import {InputComponent} from '../../components/input/InputTime';
+import {useFormik} from 'formik';
 import {ButtonComponent} from '../../components/button/Button';
-import {FormikBlock, FormikInnerBlock, FormikWrapper,Error } from '../styled/Styled';
-import { InputWrapper } from '../../components/button/styled';
+import {Error, FormikBlock, FormikInnerBlock, FormikWrapper} from '../styled/Styled';
+import {InputBlock, InputTimeWrapper} from '../../components/button/styled';
+import {createDay, createEvent, ParseDate} from '../../utils/createEvent';
+import { useAppDispatch } from '../../bll/store';
+import { addDay } from '../../bll/day-reducer';
+import { addEvent } from '../../bll/event-reducer';
 
 export const EventFormik = () => {
+    const dispatch = useAppDispatch()
 
     const formik = useFormik({
-        initialValues: initialValues,
+        initialValues: {} as InitValueType,
         validate: validate,
-        onSubmit: (values : any) => {
-            console.log(values)
+        onSubmit: (values: InitValueType) => {
+            let event = createEvent(values.timeFromHour, values.timeFromMinute, values.timeToHour, values.timeToMinute, values.name, values.description)
+            let date = ParseDate(values.date)
+            let dayObj = createDay(Number(date[0]), Number(date[1]), Number(date[2]))
+            dispatch(addDay({day: dayObj}))
+            dispatch(addEvent({id: dayObj.id, event: event}))
         },
     })
     return <form onSubmit={formik.handleSubmit}>
@@ -21,85 +29,74 @@ export const EventFormik = () => {
             <FormikBlock>
                 <FormikInnerBlock>
                     <span>Name</span>
-                    <div>
-                        <Input id ='name' name='name'
-                               type="text"
-                               onChange={formik.handleChange}
-                               value={formik.values.name}/>
+                    <InputBlock>
+                        <InputComponent id={'name'} name={'name'}
+                                        type={'text'} onChange={formik.handleChange}
+                                        value={formik.values.name}/>
                         {formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
-                    </div>
+                    </InputBlock>
                 </FormikInnerBlock>
                 <FormikInnerBlock>
                     <span>Description</span>
-                    <InputComponent id = {'description'} name = {'description'}
-                       type = {'text'} onChange = {formik.handleChange}
-                                    value = {formik.values.description}/>
+                    <InputBlock>
+                        <InputComponent id={'description'} name={'description'}
+                                        type={'text'} onChange={formik.handleChange}
+                                        value={formik.values.description}/>
                         {formik.errors.description ? <Error>{formik.errors.description}</Error> : null}
-
+                    </InputBlock>
+                </FormikInnerBlock>
+                <FormikInnerBlock>
+                    <span>Date</span>
+                    <InputBlock>
+                        <InputComponent type={'text'} id={'date'} name={'date'}
+                                        onChange={formik.handleChange}
+                                        placeholder={'01/01/2021'}
+                                        value={formik.values.date}/>
+                        {formik.errors.date ? <Error>{formik.errors.date}</Error> : null}
+                    </InputBlock>
+                </FormikInnerBlock>
+                <FormikInnerBlock>
+                    <span>Time from</span>
+                    <InputTimeWrapper>
+                        <InputComponent
+                            id={'timeFromHour'} name={'timeFromHour'} type={'number'} min={'0'} max={'23'}
+                            placeholder={'00'} onChange={formik.handleChange}
+                            value={formik.values.timeFromHour}
+                        />
+                        {formik.errors.timeFromHour ? <Error>{formik.errors.timeFromHour}</Error> : null}
+                        <InputComponent
+                            id={'timeFromMinute'} name={'timeFromMinute'}
+                            type={'number'} min={'0'} max={'59'}
+                            placeholder={'00'} onChange={formik.handleChange}
+                            value={formik.values.timeFromMinute}
+                        />
+                        {formik.errors.timeFromMinute ?
+                            <Error>{formik.errors.timeFromMinute}</Error> : null}
+                    </InputTimeWrapper>
                 </FormikInnerBlock>
                 <div className='formikInnerBlock'>
-                    <span>Date</span>
-                    <div>
-                        <Input type="text" id='date' name='date'
-                               onChange={formik.handleChange}
-                               placeholder={'01/01/2021'}
-                               value={formik.values.date}
-                    />
-                        {formik.errors.date ? <div className='error'>{formik.errors.date}</div> : null}
-                    </div>
-                </div>
-                <div className='formikInnerBlock'>
-                    <span>Time from</span>
-                    <InputWrapper>
-                        <Input id = 'timeFromHour'  name = 'timeFromHour'  type="number" min="0" max="23"
-                               placeholder="00" onChange={formik.handleChange}
-                               value={formik.values.timeFromHour}
-                        />
-                        {formik.errors.timeFromHour ? <div className='error'>{formik.errors.timeFromHour}</div> : null}
-                        <Input
-                            id = 'timeFromMinute'  name = 'timeFromMinute'
-                            type="number" min="0" max="59"
-                               placeholder="00" onChange={formik.handleChange}
-                               value={formik.values.timeFromMinute}
-                        />
-                        {formik.errors.timeFromMinute ? <div className='error'>{formik.errors.timeFromMinute}</div> : null}
-                    </InputWrapper>
-                </div>
-                <div className='formikInnerBlock'>
                     <span>Time to</span>
-                    <InputWrapper>
-                        <Input id = 'timeToHour'  name = 'timeToHour'  type="number" min="0" max="23"
-                               placeholder="00" onChange={formik.handleChange}
-                               value={formik.values.timeToHour}
+                    <InputTimeWrapper>
+                        <InputComponent id={'timeToHour'} name={'timeToHour'} type={'number'} min={'0'} max={'23'}
+                                        placeholder={'00'} onChange={formik.handleChange}
+                                        value={formik.values.timeToHour}
                         />
-                        {formik.errors.timeToHour ? <div className='error'>{formik.errors.timeToHour}</div> : null}
-                        <Input
-                            id = 'timeToMinute'  name = 'timeToMinute'
-                            type="number" min="0" max="59"
-                            placeholder="00" onChange={formik.handleChange}
+                        {formik.errors.timeToHour ? <Error>{formik.errors.timeToHour}</Error> : null}
+                        <InputComponent
+                            id={'timeToMinute'} name={'timeToMinute'}
+                            type={'number'} min="0" max={'59'}
+                            placeholder={'00'} onChange={formik.handleChange}
                             value={formik.values.timeToMinute}
-
                         />
-                        {formik.errors.timeToMinute ? <div className='error'>{formik.errors.timeToMinute}</div> : null}
-                    </InputWrapper>
+                        {formik.errors.timeToMinute ? <Error>{formik.errors.timeToMinute}</Error> : null}
+                    </InputTimeWrapper>
                 </div>
             </FormikBlock>
             <div className='formikBlockButton'>
-                <ButtonComponent name = {'create'} htmlType={'submit'}/>
+                <ButtonComponent name={'create'} htmlType={'submit'}/>
             </div>
         </FormikWrapper>
     </form>
-}
-
-//initial value
-const initialValues = {
-    name: '',
-    description: '',
-    date: '',
-    timeFromHour: '00',
-    timeFromMinute: '00',
-    timeToHour: '00',
-    timeToMinute: '00',
 }
 
 //validate
@@ -141,4 +138,15 @@ let validate = (values: any) => {
             timeFromHour: 'values must be less than 60 or equal to 60'
         }
     }
+}
+
+//type
+export type InitValueType = {
+    date: string
+    description: string
+    name: string
+    timeFromHour: number
+    timeFromMinute: number
+    timeToHour: number
+    timeToMinute: number
 }

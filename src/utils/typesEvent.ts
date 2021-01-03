@@ -10,8 +10,8 @@ export type EventType = {
 
 export type DateType = {
   day: number
-  month: MonthTypeNumber
-  year: yearType
+  month: number
+  year: number
 }
 
 export type DayType = {
@@ -24,7 +24,7 @@ type MonthType = 'January'| 'February'| 'March'| 'April'| 'May'| 'June'|
 
 export type MonthTypeNumber = 1|2|3|4|5|6|7|8|9|10|11|12
 
-export type yearType = 2020|2021|2022|2023|2024
+/*export type yearType = 2020|2021|2022|2023|2024|2025|2026|2027|2028|2029|2030*/
 
 export type EventsType = {
     [key: string]: Array<EventType>
