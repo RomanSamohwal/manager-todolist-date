@@ -8,7 +8,7 @@ const slice = createSlice({
     initialState: initialState,
     reducers: {
         addDay(state, action: PayloadAction<{ day: DayType }>) {
-            if(state.length === 0){
+            if (state.length === 0) {
                 state.push(action.payload.day)
             } else {
                 state.forEach((d) => {

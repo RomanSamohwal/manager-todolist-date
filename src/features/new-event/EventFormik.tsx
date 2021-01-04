@@ -6,22 +6,44 @@ import {ButtonComponent} from '../../components/button/Button';
 import {Error, FormikBlock, FormikInnerBlock, FormikWrapper} from '../styled/Styled';
 import {InputBlock, InputTimeWrapper} from '../../components/button/styled';
 import {createDay, createEvent, ParseDate} from '../../utils/createEvent';
-import { useAppDispatch } from '../../bll/store';
+import {AppRootStateType, useAppDispatch} from '../../bll/store';
 import { addDay } from '../../bll/day-reducer';
 import { addEvent } from '../../bll/event-reducer';
+import {useSelector} from 'react-redux';
+import {EventType} from '../../utils/typesEvent';
 
 export const EventFormik = () => {
     const dispatch = useAppDispatch()
-
+    const events = useSelector<AppRootStateType>(state => state.events)
     const formik = useFormik({
         initialValues: {} as InitValueType,
         validate: validate,
         onSubmit: (values: InitValueType) => {
-            let event = createEvent(values.timeFromHour, values.timeFromMinute, values.timeToHour, values.timeToMinute, values.name, values.description)
             let date = ParseDate(values.date)
             let dayObj = createDay(Number(date[0]), Number(date[1]), Number(date[2]))
+            let event = createEvent(values.timeFromHour, values.timeFromMinute,
+                values.timeToHour, values.timeToMinute, values.name, values.description)
+
+            // @ts-ignore
+            if (events[dayObj.id] !== undefined) {
+                // @ts-ignore
+                events[dayObj.id].forEach((e: EventType) => {
+                    debugger
+                    let start1 = event.timeFromHour
+                    let start2 = e.timeFromHour
+                    let finish1 = event.timeToHour
+                    let finish2 = e.timeToHour
+                    if (start1 <= finish2 && start2 <= finish1) {
+                        console.log('пересечение')
+                        return;
+                    }
+                })
+            } else {
+                dispatch(addEvent({id: dayObj.id, event: event}))
+            }
+
             dispatch(addDay({day: dayObj}))
-            dispatch(addEvent({id: dayObj.id, event: event}))
+
         },
     })
     return <form onSubmit={formik.handleSubmit}>

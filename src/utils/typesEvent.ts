@@ -2,8 +2,10 @@ export type EventType = {
     name: string
     description: string
     left: number
-    timeFrom: string
-    timeTo: string
+    timeFromHour: number
+    timeFromMinute: number
+    timeToHour: number
+    timeToMinute: number
     time: number
     startTime: number
 }

@@ -11,8 +11,10 @@ export const createEvent = (timeFromHour: number = 0, timeFromMinute: number = 0
         name: name,
         description: description,
         left: 5,
-        timeFrom: `${timeFromHour}:${timeFromMinute}`,
-        timeTo: `${timeToHour}:${timeToMinute}`,
+        timeFromHour: timeFromHour,
+        timeFromMinute: timeFromMinute,
+        timeToHour: timeToHour,
+        timeToMinute: timeToMinute,
         time: timeDifferentPercent,
         startTime: startTime
     }

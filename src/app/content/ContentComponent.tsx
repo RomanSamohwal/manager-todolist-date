@@ -4,6 +4,7 @@ import {PATH} from '../header/Path';
 import {WeekContainer} from '../../features/week/WeekContainer';
 import {MonthContainer} from '../../features/month/MonthContainer';
 import {DayContainer} from '../../features/day/DayContainer';
+import { InputTime } from '../../components/input/InputTime';
 
 export const ContentComponent = (props: any) => {
     let month = props.month
@@ -15,7 +16,7 @@ export const ContentComponent = (props: any) => {
         <Switch>
             <Route path={PATH.MONTH} render={() => <MonthContainer month = {month} day = {day} events = {events} daysObjectArray = {daysObjectArray} />}/>
             <Route path={PATH.WEEK} render={() => <WeekContainer week = {week} month = {month}/> }/>
-            <Route path={PATH.DAY} render={() => <DayContainer/>}/>
+            <Route path={PATH.DAY} render={() => <InputTime/>}/>
         </Switch>
     </>
 }
