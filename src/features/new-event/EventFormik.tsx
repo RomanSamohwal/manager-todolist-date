@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Modal.css'
-import {InputComponent} from '../../components/input/InputTime';
+import {InputComponent, InputTime} from '../../components/input/InputTime';
 import {useFormik} from 'formik';
 import {ButtonComponent} from '../../components/button/Button';
 import {Error, FormikBlock, FormikInnerBlock, FormikWrapper} from '../styled/Styled';
@@ -23,28 +23,30 @@ export const EventFormik = () => {
             let dayObj = createDay(Number(date[0]), Number(date[1]), Number(date[2]))
             let event = createEvent(values.timeFromHour, values.timeFromMinute,
                 values.timeToHour, values.timeToMinute, values.name, values.description)
-
             // @ts-ignore
             if (events[dayObj.id] !== undefined) {
                 // @ts-ignore
                 events[dayObj.id].forEach((e: EventType) => {
-                    debugger
                     let start1 = event.timeFromHour
                     let start2 = e.timeFromHour
                     let finish1 = event.timeToHour
                     let finish2 = e.timeToHour
+
+                    let startM1 = event.timeFromMinute
+                    let startM2 = e.timeFromMinute
+                    let finishM1 = event.timeToMinute
+                    let finishM2 = e.timeToMinute
+
                     if (start1 <= finish2 && start2 <= finish1) {
-                        console.log('пересечение')
-                        return;
+                        if (startM1 <= finishM2 && startM2 <= finishM1) {
+                            alert('error')
+                        }
                     }
                 })
-            } else {
-                dispatch(addEvent({id: dayObj.id, event: event}))
             }
-
-            dispatch(addDay({day: dayObj}))
-
-        },
+                dispatch(addDay({day: dayObj}))
+                dispatch(addEvent({id: dayObj.id, event: event}))
+        }
     })
     return <form onSubmit={formik.handleSubmit}>
         <FormikWrapper>

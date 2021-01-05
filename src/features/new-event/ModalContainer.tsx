@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {ButtonComponent} from '../../components/button/Button';
 import {Portal} from '../../components/portal/Portal';
 import {Modal} from './Modal';
-/*import './Modal.css'*/
 
 export const ModalContainer = () => {
 

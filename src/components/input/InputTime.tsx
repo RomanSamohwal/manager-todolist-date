@@ -14,37 +14,29 @@ export const InputComponent = (props: any) => {
     />
 }
 
-export const InputTime = () => {
+export const InputTime = (props: any) => {
 
     let [hour, setHour] = useState<any>('')
     let [minute, setMinute] = useState<any>('')
 
+
     let noHourHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let h = e.currentTarget.value
-        let hm = moment().hours(Number(h)).hour()
-        if(hm === 0){
-            setHour('')
-        } else {
-            setHour(hm)
-        }
+        setHour(moment().hours(+h).format('HH'))
+        props.handleChange()
     }
 
     let onMinuteHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let m = e.currentTarget.value
-        let mm = moment().minutes(Number(m)).minute()
-        if (mm === 0) {
-            setMinute('')
-        } else {
-            setMinute(mm)
-        }
+        setMinute(moment().minutes(+m).format('mm'))
     }
-    /* let hour = (hm > 9 && hm < 100) ? hm : `0${hm}`*/
-    return <>
-        <InputTimeWrapper>
-            <Input type={'number'} placeholder={'00'} value={hour} onChange={noHourHandler}/>
-            <Input type={'number'} placeholder={'00'} value={minute} onChange={onMinuteHandler}/>
-        </InputTimeWrapper>
-    </>
+
+    return <InputTimeWrapper>
+        <Input id={props.idHour} name={props.timeHour} type={'number'} placeholder={'00'} value={hour}
+               onChange={noHourHandler}/>
+        <Input id={props.idMinute} name={props.timeMinute} type={'number'} placeholder={'00'} value={minute}
+               onChange={onMinuteHandler}/>
+    </InputTimeWrapper>
 }
 
 export const SetDate = () => {

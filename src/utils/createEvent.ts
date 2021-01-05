@@ -19,7 +19,7 @@ export const createEvent = (timeFromHour: number = 0, timeFromMinute: number = 0
         startTime: startTime
     }
 }
-
+//1 + 5
 export const createDay = (day: number, month: number, year: number): DayType => {
     return {
         date: {day, month, year},

@@ -8,5 +8,5 @@ type ButtonType = {
 }
 
 export const ButtonComponent = (props: ButtonType) => {
-    return <Button onClick={props.onHandle} htmlType ={props.htmlType}>{props.name}</Button>
+    return <Button onClick={props.onHandle} htmlType={props.htmlType}>{props.name}</Button>
 }

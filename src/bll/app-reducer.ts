@@ -4,20 +4,21 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 const slice = createSlice({
         name: 'app',
         initialState: {
-            dayCurrent: null,
-            monthCurrent: null
-        },
+            isFlag: false,
+            status: 'idle'
+        } as StateType,
         reducers: {
-          /*  setCurrentDay(state, action: PayloadAction<{ dayCurrent: Day}>) {
-                state.dayCurrent = action.payload.dayCurrent
-            },
-            setCurrentMonth(state, action: PayloadAction<{ monthCurrent: any }>) {
-                state.monthCurrent = action.payload.monthCurrent
-            }*/
+             /*setCurrentDay(state, action: PayloadAction<{ dayCurrent: day}>) {
+                 state.dayCurrent = action.payload.dayCurrent
+             }*/
         }
     }
 )
 
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export const appReducer = slice.reducer;
-/*
-export const {setCurrentMonth,setCurrentDay} = slice.actions*/
+export type StateType = {
+    status: RequestStatusType
+    isFlag: boolean
+}
+/*export const {setCurrentMonth,setCurrentDay} = slice.actions*/
