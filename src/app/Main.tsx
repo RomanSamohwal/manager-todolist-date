@@ -16,8 +16,8 @@ export const Main = () => {
     let Event2 = createEvent(1, 30, 2,
         30, 'meting2', 'meeting with my friend',)
 
-    let DayObject = createDay(29,12,2020)
-    let DayObject1 = createDay(1,1,2021)
+    let DayObject = createDay('1/1/2021')
+    let DayObject1 = createDay('1/1/2021')
     let DaysObject = [DayObject,DayObject1]
 
 

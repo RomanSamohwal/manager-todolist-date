@@ -19,14 +19,15 @@ export const createEvent = (timeFromHour: number = 0, timeFromMinute: number = 0
         startTime: startTime
     }
 }
-//1 + 5
-export const createDay = (day: number, month: number, year: number): DayType => {
+
+export const createDay = (date: string): DayType => {
+    let splitDate = parseDate(date)
     return {
-        date: {day, month, year},
-        id: `${day}${month}${year}`
+        date: {day: Number(splitDate[0]), month: Number(splitDate[1]), year: Number(splitDate[2])},
+        id: `${Number(splitDate[0])}${Number(splitDate[1])}${Number(splitDate[2])}`
     }
 }
 
-export const ParseDate = (date: string) => {
+export const parseDate = (date: string) => {
     return date.split('/')
 }

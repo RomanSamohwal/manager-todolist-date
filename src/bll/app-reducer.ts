@@ -1,24 +1,28 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-
+const initialState: InitialStateType = {
+    status: 'idle',
+    error: null
+}
 const slice = createSlice({
         name: 'app',
-        initialState: {
-            isFlag: false,
-            status: 'idle'
-        } as StateType,
+        initialState: initialState,
         reducers: {
-             /*setCurrentDay(state, action: PayloadAction<{ dayCurrent: day}>) {
-                 state.dayCurrent = action.payload.dayCurrent
-             }*/
+            setAppStatus(state, action: PayloadAction<{ status: RequestStatusType }>) {
+                state.status = action.payload.status
+            },
+            setAppErrorAC: (state, action: PayloadAction<{ error: string | null }>) => {
+                state.error = action.payload.error
+            }
         }
     }
 )
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export const appReducer = slice.reducer;
-export type StateType = {
+
+export type InitialStateType = {
     status: RequestStatusType
-    isFlag: boolean
+    error: string | null
 }
-/*export const {setCurrentMonth,setCurrentDay} = slice.actions*/
+export const {setAppStatus} = slice.actions

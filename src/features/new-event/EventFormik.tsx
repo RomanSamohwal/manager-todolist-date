@@ -1,26 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Modal.css'
-import {InputComponent, InputTime} from '../../components/input/InputTime';
+import {InputComponent} from '../../components/input/InputTime';
 import {useFormik} from 'formik';
 import {ButtonComponent} from '../../components/button/Button';
 import {Error, FormikBlock, FormikInnerBlock, FormikWrapper} from '../styled/Styled';
 import {InputBlock, InputTimeWrapper} from '../../components/button/styled';
-import {createDay, createEvent, ParseDate} from '../../utils/createEvent';
+import {createDay, createEvent, parseDate} from '../../utils/createEvent';
 import {AppRootStateType, useAppDispatch} from '../../bll/store';
-import { addDay } from '../../bll/day-reducer';
-import { addEvent } from '../../bll/event-reducer';
+import {addDay} from '../../bll/day-reducer';
+import {addEvent} from '../../bll/event-reducer';
 import {useSelector} from 'react-redux';
 import {EventType} from '../../utils/typesEvent';
 
 export const EventFormik = () => {
     const dispatch = useAppDispatch()
     const events = useSelector<AppRootStateType>(state => state.events)
+
     const formik = useFormik({
         initialValues: {} as InitValueType,
         validate: validate,
         onSubmit: (values: InitValueType) => {
-            let date = ParseDate(values.date)
-            let dayObj = createDay(Number(date[0]), Number(date[1]), Number(date[2]))
+            let dayObj = createDay(values.date)
             let event = createEvent(values.timeFromHour, values.timeFromMinute,
                 values.timeToHour, values.timeToMinute, values.name, values.description)
             // @ts-ignore
@@ -46,6 +46,7 @@ export const EventFormik = () => {
             }
                 dispatch(addDay({day: dayObj}))
                 dispatch(addEvent({id: dayObj.id, event: event}))
+
         }
     })
     return <form onSubmit={formik.handleSubmit}>

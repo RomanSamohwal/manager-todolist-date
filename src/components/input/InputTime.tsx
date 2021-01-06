@@ -4,6 +4,7 @@ import {Input} from 'antd';
 import moment from 'moment';
 import {InputTimeWrapper} from '../button/styled';
 import {FormikInnerBlock} from '../../features/styled/Styled';
+import {dayEventApi} from '../../api/api';
 
 export const InputComponent = (props: any) => {
 
