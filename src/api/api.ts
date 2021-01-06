@@ -1,8 +1,14 @@
-import {createDay, parseDate} from '../utils/createEvent';
+import {createDay} from '../utils/createEvent';
+import {DayType} from '../utils/typesEvent';
 
-export const saveProcesses = (state: any) => {
+export const saveEvents = (state: any) => {
+    localStorage.setItem('events', JSON.stringify(state));
+};
+
+export const saveDays = (state: any) => {
     localStorage.setItem('days', JSON.stringify(state));
 };
+
 
 export const restoreEvents = () => {
     if (localStorage.getItem('events') === null) {
@@ -13,8 +19,8 @@ export const restoreEvents = () => {
 };
 
 export const restoreDays = () => {
-    if (localStorage.getItem('events') === null) {
-        return {}
+    if (localStorage.getItem('days') === null) {
+        return [] as Array<DayType>
     } else {
         return JSON.parse(<string>localStorage.getItem('processes'))
     }
@@ -22,7 +28,7 @@ export const restoreDays = () => {
 
 export const dayEventApi = {
     getDays: () => {
-        return new Promise((resolve) => {
+        return new Promise<Array<DayType>>((resolve) => {
             setTimeout(() => {
                 resolve(restoreDays())
             }, 2000)
@@ -38,7 +44,7 @@ export const dayEventApi = {
     },
     addDay: (date: string) => {
         let dayObj = createDay(date)
-        return new Promise((resolve) => {
+        return new Promise<DayType>((resolve) => {
             setTimeout(() => {
                 resolve(dayObj)
             }, 1000)
