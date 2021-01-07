@@ -3,8 +3,10 @@ import {HeaderComponent} from './header/HeaderComponent';
 import {HashRouter} from 'react-router-dom';
 import {ContentComponent} from './content/ContentComponent';
 import moment from 'moment';
-import {createDay, createEvent} from '../utils/createEvent';
+
 import {EventsType} from '../utils/typesEvent';
+import {createEvent} from '../utils/createEvent';
+import {createDay} from '../utils/createDay';
 
 
 

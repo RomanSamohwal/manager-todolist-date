@@ -18,7 +18,7 @@ export type DateType = {
 
 export type DayType = {
     id: string
-    date:DateType
+    date: DateType
 }
 
 type MonthType = 'January'| 'February'| 'March'| 'April'| 'May'| 'June'|

@@ -16,3 +16,4 @@ test('add new Days object', () => {
 
     expect(endDaysState.length).toBe(1)
 })
+

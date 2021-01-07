@@ -5,12 +5,9 @@ import {useFormik} from 'formik';
 import {ButtonComponent} from '../../components/button/Button';
 import {Error, FormikBlock, FormikInnerBlock, FormikWrapper} from '../styled/Styled';
 import {InputBlock, InputTimeWrapper} from '../../components/button/styled';
-import {createDay, createEvent, parseDate} from '../../utils/createEvent';
 import {AppRootStateType, useAppDispatch} from '../../bll/store';
-import {addDay} from '../../bll/day-reducer';
-import {addEvent} from '../../bll/event-reducer';
+import {addDayTC} from '../../bll/day-reducer';
 import {useSelector} from 'react-redux';
-import {EventType} from '../../utils/typesEvent';
 
 export const EventFormik = () => {
     const dispatch = useAppDispatch()
@@ -20,8 +17,9 @@ export const EventFormik = () => {
         initialValues: {} as InitValueType,
         validate: validate,
         onSubmit: (values: InitValueType) => {
-            let dayObj = createDay(values.date)
-            let event = createEvent(values.timeFromHour, values.timeFromMinute,
+           /* let dayObj = createDay(values.date)*/
+            dispatch(addDayTC({date: values.date}))
+          /*  let event = createEvent(values.timeFromHour, values.timeFromMinute,
                 values.timeToHour, values.timeToMinute, values.name, values.description)
             // @ts-ignore
             if (events[dayObj.id] !== undefined) {
@@ -45,7 +43,7 @@ export const EventFormik = () => {
                 })
             }
                 dispatch(addDay({day: dayObj}))
-                dispatch(addEvent({id: dayObj.id, event: event}))
+                dispatch(addEvent({id: dayObj.id, event: event}))*/
 
         }
     })
