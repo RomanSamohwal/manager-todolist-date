@@ -1,4 +1,4 @@
-import {DateType, DayType, EventsType, EventType} from '../utils/typesEvent';
+import {DateType, DayType, EventsType, EventDayType} from '../utils/typesEvent';
 import {addDay, daysReducer} from './day-reducer';
 import {addEvent, eventsReducer} from './event-reducer';
 
@@ -14,7 +14,7 @@ test('add new Days object and Event object', () => {
     }
 
 
-    let Event: EventType = {
+    let Event: EventDayType = {
         timeFrom: '10:22',
         timeTo: '11:22',
         name: 'meeting',

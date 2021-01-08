@@ -5,17 +5,17 @@ import {ContentComponent} from './content/ContentComponent';
 import moment from 'moment';
 
 import {EventsType} from '../utils/typesEvent';
-import {createEvent} from '../utils/createEvent';
+import {createEventOfDay} from '../utils/createEventOfDay';
 import {createDay} from '../utils/createDay';
 
 
 
 export const Main = () => {
 
-    let Event1 = createEvent(1, 30, 2,
+    let Event1 = createEventOfDay(1, 30, 2,
         30, 'meting1', 'meeting with my friend',)
 
-    let Event2 = createEvent(1, 30, 2,
+    let Event2 = createEventOfDay(1, 30, 2,
         30, 'meting2', 'meeting with my friend',)
 
     let DayObject = createDay('1/1/2021')

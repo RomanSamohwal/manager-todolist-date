@@ -12,8 +12,7 @@ export const parseDate = (date: string) => {
     return date.split('/')
 }
 
-export const changeDays = (days: Array<DayType> = [], date: string) => {
-    debugger
+export const generateDays = (days: Array<DayType> = [], date: string) => {
     let splitDate = parseDate(date)
     let dateString = `${Number(splitDate[0])}${Number(splitDate[1])}${Number(splitDate[2])}`
     let newDay = createDay(date)
@@ -22,5 +21,7 @@ export const changeDays = (days: Array<DayType> = [], date: string) => {
     if (!isContain) {
         copyDays.push(newDay)
     }
+
+
     return copyDays
 }

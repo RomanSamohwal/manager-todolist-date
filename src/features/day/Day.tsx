@@ -1,7 +1,7 @@
 import React from 'react';
 import './Day.css'
 import styled from 'styled-components';
-import {EventType} from '../../utils/typesEvent';
+import {EventDayType} from '../../utils/typesEvent';
 import {Event} from '../../components/event/Event';
 
 export const GridWrapperDay = styled.div`
@@ -33,7 +33,7 @@ export const CellWrapperDay = styled.div`
     box-sizing: border-box;
     margin: -1px -1px 0 0;
 `
-type EventsType = EventType[]
+type EventsType = EventDayType[]
 type HourCellType = {
     isEvent: boolean
     eventsKey?: EventsType
@@ -116,7 +116,7 @@ export const Day: React.FC = () => {
                         <div className='minute'>60</div>*/}
                             {d.isEvent &&
                             // @ts-ignore
-                            d.eventsKey.map((e: EventType) => {
+                            d.eventsKey.map((e: EventDayType) => {
                                     return <Event height={e.time} top={e.startTime}
                                                    left={e.left}/>
                                 }

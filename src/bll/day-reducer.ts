@@ -21,7 +21,6 @@ export const addDayTC = createAsyncThunk('days/addDay',
     async (param: { date: string }, thunkAPI) => {
         thunkAPI.dispatch(setAppStatus({status: 'loading'}))
         try {
-            debugger
             let days = await dayEventApi.addDay(param.date)
             thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
             return {days}
@@ -51,26 +50,12 @@ const slice = createSlice({
             return action.payload?.days
         })
         builder.addCase(addDayTC.fulfilled, (state, action) => {
-            debugger
             if (action.payload?.days) {
                return action.payload.days
             }
-
-            /*  if (state.length === 0 && action.payload) {
-                state.push(action.payload.day)
-            } else {
-                    state.forEach((d) => {
-                        if (d.id !== action.payload?.day.id) {
-                              if(action.payload) state.push(action.payload.day)
-                        }
-                    })
-                }*/
         })
     }
 })
 
 export const daysReducer = slice.reducer;
 export const {addDay} = slice.actions
-
-export type ThunkError = { rejectValue: { errors: Array<string>, fieldsErrors?: Array<FieldErrorType> } }
-export type FieldErrorType = { field: string; error: string }

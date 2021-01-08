@@ -7,46 +7,32 @@ import {Error, FormikBlock, FormikInnerBlock, FormikWrapper} from '../styled/Sty
 import {InputBlock, InputTimeWrapper} from '../../components/button/styled';
 import {AppRootStateType, useAppDispatch} from '../../bll/store';
 import {addDayTC} from '../../bll/day-reducer';
+import {addEventTS} from '../../bll/event-reducer';
+import {DataType} from '../../utils/createEventOfDay';
+import {Simulate} from 'react-dom/test-utils';
 import {useSelector} from 'react-redux';
 
 export const EventFormik = () => {
     const dispatch = useAppDispatch()
-    const events = useSelector<AppRootStateType>(state => state.events)
-
+    debugger
+    const error = useSelector<AppRootStateType>(state => state.events.error)
     const formik = useFormik({
         initialValues: {} as InitValueType,
         validate: validate,
         onSubmit: (values: InitValueType) => {
-           /* let dayObj = createDay(values.date)*/
-            dispatch(addDayTC({date: values.date}))
-          /*  let event = createEvent(values.timeFromHour, values.timeFromMinute,
-                values.timeToHour, values.timeToMinute, values.name, values.description)
-            // @ts-ignore
-            if (events[dayObj.id] !== undefined) {
-                // @ts-ignore
-                events[dayObj.id].forEach((e: EventType) => {
-                    let start1 = event.timeFromHour
-                    let start2 = e.timeFromHour
-                    let finish1 = event.timeToHour
-                    let finish2 = e.timeToHour
-
-                    let startM1 = event.timeFromMinute
-                    let startM2 = e.timeFromMinute
-                    let finishM1 = event.timeToMinute
-                    let finishM2 = e.timeToMinute
-
-                    if (start1 <= finish2 && start2 <= finish1) {
-                        if (startM1 <= finishM2 && startM2 <= finishM1) {
-                            alert('error')
-                        }
-                    }
-                })
+            let data: DataType = {
+                timeFromHour: values.timeFromHour || 0,
+                timeFromMinute: values.timeFromMinute || 0,
+                timeToHour: values.timeToHour || 0,
+                timeToMinute: values.timeToMinute || 0,
+                name: values.name,
+                description: values.description
             }
-                dispatch(addDay({day: dayObj}))
-                dispatch(addEvent({id: dayObj.id, event: event}))*/
-
+            dispatch(addDayTC({date: values.date}))
+            dispatch(addEventTS({data, idDate: values.date}))
         }
     })
+
     return <form onSubmit={formik.handleSubmit}>
         <FormikWrapper>
             <FormikBlock>
@@ -112,12 +98,14 @@ export const EventFormik = () => {
                             value={formik.values.timeToMinute}
                         />
                         {formik.errors.timeToMinute ? <Error>{formik.errors.timeToMinute}</Error> : null}
+                        {error ? <Error>{String(error)}</Error> : null }
                     </InputTimeWrapper>
                 </div>
             </FormikBlock>
             <div className='formikBlockButton'>
                 <ButtonComponent name={'create'} htmlType={'submit'}/>
             </div>
+
         </FormikWrapper>
     </form>
 }

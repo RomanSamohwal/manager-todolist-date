@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './Month.css'
 import moment from 'moment';
 import {CellWrapper, DayWrapper, GridWrapper, RowInCell} from '../styled/Styled';
-import {DayType, EventType} from '../../utils/typesEvent';
+import {DayType, EventDayType} from '../../utils/typesEvent';
 
 export const Month = React.memo((props: any) => {
 

@@ -1,30 +1,7 @@
-import {changeDays, createDay} from '../utils/createDay';
+import {generateDays} from '../utils/createDay';
+import {DataType, generateEventOfDays} from '../utils/createEventOfDay';
 import {DayType} from '../utils/typesEvent';
-
-export const saveEvents = (state: any) => {
-    localStorage.setItem('events', JSON.stringify(state));
-};
-
-export const saveDays = (state: Array<DayType>) => {
-    localStorage.setItem('days', JSON.stringify(state));
-};
-
-
-export const restoreEvents = () => {
-    if (localStorage.getItem('events') === null) {
-        return {}
-    } else {
-        return JSON.parse(<string>localStorage.getItem('events'))
-    }
-};
-
-export const restoreDays = () => {
-    if (localStorage.getItem('days') === null) {
-        return []
-    } else {
-        return JSON.parse(<string>localStorage.getItem('days'))
-    }
-};
+import {restoreDays, restoreEvents, saveDays} from './localStorage';
 
 export const dayEventApi = {
     getDays: () => {
@@ -43,15 +20,15 @@ export const dayEventApi = {
     },
     addDay: (date: string) => {
         let days = restoreDays()
-        let newDays = changeDays(days,date)
+        let newDays = generateDays(days, date)
         saveDays(newDays)
         return new Promise<Array<DayType>>((resolve) => {
             setTimeout(() => {
                 resolve(newDays)
-            }, 1000)
+            }, 0)
         })
     },
-    addEvent: () => {
-        return Promise.resolve()
+    addEvent: (data: DataType, date: string) => {
+        return generateEventOfDays(data, date)
     }
 }
