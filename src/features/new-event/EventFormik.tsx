@@ -14,7 +14,6 @@ import {useSelector} from 'react-redux';
 
 export const EventFormik = () => {
     const dispatch = useAppDispatch()
-    debugger
     const error = useSelector<AppRootStateType>(state => state.events.error)
     const formik = useFormik({
         initialValues: {} as InitValueType,

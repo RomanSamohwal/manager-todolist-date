@@ -32,19 +32,7 @@ export const addDayTC = createAsyncThunk('days/addDay',
 const slice = createSlice({
     name: 'days',
     initialState: initialState,
-    reducers: {
-        addDay(state, action: PayloadAction<{ day: DayType }>) {
-            if (state.length === 0) {
-                state.push(action.payload.day)
-            } else {
-                state.forEach((d) => {
-                    if (d.id !== action.payload.day.id) {
-                        state.push(action.payload.day)
-                    }
-                })
-            }
-        }
-    },
+    reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchDays.fulfilled, (state, action) => {
             return action.payload?.days
@@ -58,4 +46,4 @@ const slice = createSlice({
 })
 
 export const daysReducer = slice.reducer;
-export const {addDay} = slice.actions
+

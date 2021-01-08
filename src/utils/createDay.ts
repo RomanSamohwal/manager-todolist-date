@@ -1,4 +1,5 @@
 import {DayType} from './typesEvent';
+import {restoreDays, restoreEvents, saveDays} from '../api/localStorage';
 
 export const createDay = (date: string): DayType => {
     let splitDate = parseDate(date)
@@ -12,7 +13,8 @@ export const parseDate = (date: string) => {
     return date.split('/')
 }
 
-export const generateDays = (days: Array<DayType> = [], date: string) => {
+export const generateDays = (date: string) => {
+    let days = restoreDays()
     let splitDate = parseDate(date)
     let dateString = `${Number(splitDate[0])}${Number(splitDate[1])}${Number(splitDate[2])}`
     let newDay = createDay(date)
@@ -21,7 +23,23 @@ export const generateDays = (days: Array<DayType> = [], date: string) => {
     if (!isContain) {
         copyDays.push(newDay)
     }
+    saveDays(copyDays)
+    return Promise.resolve(copyDays)
+}
 
+export const getEventsFromLocalStorage = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(restoreEvents())
+        }, 1000)
 
-    return copyDays
+    })
+}
+
+export const getDaysFromLocalStorage = () => {
+    return new Promise<Array<DayType>>((resolve) => {
+        setTimeout(() => {
+            resolve(restoreDays())
+        }, 1000)
+    })
 }
