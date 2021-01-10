@@ -19,7 +19,6 @@ export const Main = () => {
     let DayObject1 = createDay('1/1/2021')
     let DaysObject = [DayObject,DayObject1]
 
-
     let EventsArray: EventsType = {
         [DayObject.id]: [Event1, Event2, Event2, Event2],
         [DayObject1.id]: [Event1, Event2, Event2, Event1, Event2]
@@ -32,7 +31,6 @@ export const Main = () => {
     let selectDay = moment().date(1).month('January').year(2021)
 
     moment.updateLocale('ru', {week: {dow: 1}})
-
 
     const dayStart = moment()
 

@@ -3,7 +3,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 const initialState: InitialStateType = {
     status: 'idle',
     error: null,
-    calendarSwitch: 'day'
+    calendarSwitch: 'month'
 }
 
 const slice = createSlice({
@@ -13,8 +13,11 @@ const slice = createSlice({
             setAppStatus(state, action: PayloadAction<{ status: RequestStatusType }>) {
                 state.status = action.payload.status
             },
-            setAppErrorAC: (state, action: PayloadAction<{ error: string | null }>) => {
+            setAppErrorAC(state, action: PayloadAction<{ error: string | null }>){
                 state.error = action.payload.error
+            },
+            switchCalendar(state, action: PayloadAction<{choice: CalendarSwitchType}>){
+                state.calendarSwitch = action.payload.choice
             }
         }
     }
@@ -29,5 +32,5 @@ export type InitialStateType = {
     error: string | null,
     calendarSwitch: CalendarSwitchType
 }
-export const {setAppStatus} = slice.actions
+export const {setAppStatus,switchCalendar} = slice.actions
 export type CalendarSwitchType = 'month' | 'week' | 'day'
