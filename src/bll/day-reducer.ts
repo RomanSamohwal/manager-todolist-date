@@ -10,7 +10,8 @@ export const fetchDays = createAsyncThunk('days/fetchDays',
         thunkAPI.dispatch(setAppStatus({status: 'loading'}))
         try {
             let days = await dayEventApi.getDays()
-            thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
+         /*   thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
+            thunkAPI.dispatch(setAppStatus({status: 'idle'}))*/
             return {days}
         } catch (error) {
 
@@ -19,10 +20,10 @@ export const fetchDays = createAsyncThunk('days/fetchDays',
 
 export const addDayTC = createAsyncThunk('days/addDay',
     async (param: { date: string }, thunkAPI) => {
-        thunkAPI.dispatch(setAppStatus({status: 'loading'}))
+        /*thunkAPI.dispatch(setAppStatus({status: 'loading'}))*/
         try {
             let days = await dayEventApi.addDay(param.date)
-            thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
+        /*    thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))*/
             return {days}
         } catch (error) {
 

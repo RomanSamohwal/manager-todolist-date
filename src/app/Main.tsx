@@ -8,7 +8,7 @@ import {createEventOfDay} from '../utils/createEventOfDay';
 import {createDay} from '../utils/createDay';
 
 export const Main = () => {
-
+    console.log('Main')
     let Event1 = createEventOfDay(1, 30, 2,
         30, 'meting1', 'meeting with my friend',)
 

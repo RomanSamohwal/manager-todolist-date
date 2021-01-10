@@ -11,19 +11,22 @@ const initialState = {
 
 export const fetchEvents = createAsyncThunk('events/fetchEvents',
     async (param, thunkAPI) => {
+      /*  thunkAPI.dispatch(setAppStatus({status: 'loading'}))*/
         let events = await dayEventApi.getEventsOfDays()
-         thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
+      /*  thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
+        thunkAPI.dispatch(setAppStatus({status: 'idle'}))*/
         return {events}
     })
 
 export const addEventTS = createAsyncThunk('events/addEvents',
     async (param: { data: DataType, idDate: string }, thunkAPI) => {
+        thunkAPI.dispatch(setAppStatus({status: 'loading'}))
         try {
             let events = await dayEventApi.addEvent(param.data, param.idDate)
-
+            thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
+            thunkAPI.dispatch(setAppStatus({status: 'idle'}))
             return {events}
         } catch (error) {
-            console.log(error)
             return thunkAPI.rejectWithValue(error)
         }
     })
@@ -31,7 +34,12 @@ export const addEventTS = createAsyncThunk('events/addEvents',
 const slice = createSlice({
     name: 'events',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        deleteError(state){
+           state.error = ''
+        }
+
+    },
     extraReducers: (builder,) => {
         builder.addCase(fetchEvents.fulfilled, (state, action) => {
             if (action.payload.events) {
@@ -54,4 +62,5 @@ const slice = createSlice({
     }
 })
 
+export const {deleteError} = slice.actions
 export const eventsReducer = slice.reducer;

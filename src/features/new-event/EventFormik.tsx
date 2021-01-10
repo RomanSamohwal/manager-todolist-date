@@ -7,14 +7,20 @@ import {Error, FormikBlock, FormikInnerBlock, FormikWrapper} from '../styled/Sty
 import {InputBlock, InputTimeWrapper} from '../../components/button/styled';
 import {AppRootStateType, useAppDispatch} from '../../bll/store';
 import {addDayTC} from '../../bll/day-reducer';
-import {addEventTS} from '../../bll/event-reducer';
+import {addEventTS, deleteError} from '../../bll/event-reducer';
 import {DataType} from '../../utils/createEventOfDay';
-import {Simulate} from 'react-dom/test-utils';
 import {useSelector} from 'react-redux';
 
 export const EventFormik = () => {
     const dispatch = useAppDispatch()
     const error = useSelector<AppRootStateType>(state => state.events.error)
+
+    if (error) {
+        setTimeout(() => {
+            dispatch(deleteError())
+        }, 1500)
+    }
+
     const formik = useFormik({
         initialValues: {} as InitValueType,
         validate: validate,
@@ -110,42 +116,62 @@ export const EventFormik = () => {
 }
 
 //validate
-let validate = (values: any) => {
+let validate = (values: InitValueType) => {
     if (!values.name) {
         return {
-            name: 'name is required'
+            name:message_0
         }
     }
     if (values.name.length > 10) {
         return {
-            name: 'the length must be less than 10 characters'
+            name: message_1
         }
     }
     if (!values.description) {
         return {
-            name: 'description is required'
+            name: message_2
         }
     }
     if (values.description.length > 15) {
         return {
-            description: 'the length must be less than 15 characters'
+            description: message_3
         }
     }
     if (!/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/.test(values.date)) {
         return {
-            date: 'match the requested format'
+            date: message_4
         }
     }
     if (values.timeFromHour > 23 || values.timeToHour > 23) {
         return {
-            timeToHour: 'values must be less than 23 or equal to 23',
-            timeFromHour: 'values must be less than 23 or equal to 23'
+            timeToHour: message_5,
+            timeFromHour: message_5
         }
     }
     if (values.timeToMinute > 60 || values.timeToMinute < 0 || values.timeFromMinute > 60 || values.timeFromMinute < 0) {
         return {
-            timeToHour: 'values must be less than 60 or equal to 60',
-            timeFromHour: 'values must be less than 60 or equal to 60'
+            timeToHour: message_6,
+            timeFromHour: message_6
+        }
+    }
+    if (values.timeToHour < values.timeFromHour) {
+        return {
+            timeToHour: message_7,
+            timeFromHour: message_7
+        }
+    }
+    if (values.timeToHour === values.timeFromHour && values.timeToMinute === values.timeFromMinute) {
+        return {
+            timeToHour: message_8,
+            timeFromHour: message_8,
+            timeToMinute: message_8,
+            timeFromMinute: message_8
+        }
+    }
+    if ( values.timeToMinute < values.timeFromMinute) {
+        return {
+            timeToMinute: message_9,
+            timeFromMinute: message_9
         }
     }
 }
@@ -160,3 +186,14 @@ export type InitValueType = {
     timeToHour: number
     timeToMinute: number
 }
+//messages
+const message_0 = 'name is required'
+const message_1 = 'the length must be less than 10 characters'
+const message_2 = 'description is required'
+const message_3 = 'the length must be less than 15 characters'
+const message_4 = 'match the requested format'
+const message_5 = 'values must be less than 23 or equal to 23'
+const message_6 = 'timeToHour must be more than timeFromHour'
+const message_7 = 'timeToHour must be more than timeFromHour'
+const message_8 = 'the event must be at least 1 minute'
+const message_9 = 'timeToMinute must be more than timeFromMinute'
