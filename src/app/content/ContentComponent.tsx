@@ -5,7 +5,6 @@ import {WeekContainer} from '../../features/week/WeekContainer';
 import {MonthContainer} from '../../features/month/MonthContainer';
 import {DayContainer} from '../../features/day/DayContainer';
 
-
 export const ContentComponent = (props: any) => {
     let month = props.month
     let day = props.day

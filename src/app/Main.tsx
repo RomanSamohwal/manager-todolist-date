@@ -8,7 +8,7 @@ import {createEventOfDay} from '../utils/createEventOfDay';
 import {createDay} from '../utils/createDay';
 
 export const Main = () => {
-    console.log('Main')
+
     let Event1 = createEventOfDay(1, 30, 2,
         30, 'meting1', 'meeting with my friend',)
 
@@ -30,12 +30,11 @@ export const Main = () => {
     let [events , setEvents] = useState(EventsArray)
 
     let selectDay = moment().date(1).month('January').year(2021)
-    console.log(selectDay)
+
     moment.updateLocale('ru', {week: {dow: 1}})
 
 
     const dayStart = moment()
-    console.log(dayStart)
 
     const dayOfBeginOfMonthOfWeek = moment().startOf('month').startOf('week')
     const weekStart = moment().startOf('week')

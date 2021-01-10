@@ -11,10 +11,10 @@ const initialState = {
 
 export const fetchEvents = createAsyncThunk('events/fetchEvents',
     async (param, thunkAPI) => {
-      /*  thunkAPI.dispatch(setAppStatus({status: 'loading'}))*/
+        /*  thunkAPI.dispatch(setAppStatus({status: 'loading'}))*/
         let events = await dayEventApi.getEventsOfDays()
-      /*  thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
-        thunkAPI.dispatch(setAppStatus({status: 'idle'}))*/
+        /*  thunkAPI.dispatch(setAppStatus({status: 'succeeded'}))
+          thunkAPI.dispatch(setAppStatus({status: 'idle'}))*/
         return {events}
     })
 
@@ -35,10 +35,12 @@ const slice = createSlice({
     name: 'events',
     initialState: initialState,
     reducers: {
-        deleteError(state){
-           state.error = ''
+        deleteError(state) {
+            state.error = ''
+        },
+        switchCalendar(state) {
+            state.error = ''
         }
-
     },
     extraReducers: (builder,) => {
         builder.addCase(fetchEvents.fulfilled, (state, action) => {

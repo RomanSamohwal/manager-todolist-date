@@ -2,8 +2,10 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 const initialState: InitialStateType = {
     status: 'idle',
-    error: null
+    error: null,
+    calendarSwitch: 'day'
 }
+
 const slice = createSlice({
         name: 'app',
         initialState: initialState,
@@ -18,11 +20,14 @@ const slice = createSlice({
     }
 )
 
-export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export const appReducer = slice.reducer;
 
+//types
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type InitialStateType = {
     status: RequestStatusType
-    error: string | null
+    error: string | null,
+    calendarSwitch: CalendarSwitchType
 }
 export const {setAppStatus} = slice.actions
+export type CalendarSwitchType = 'month' | 'week' | 'day'
