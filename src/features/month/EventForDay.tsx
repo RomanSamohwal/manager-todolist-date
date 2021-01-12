@@ -1,5 +1,4 @@
 import React from 'react';
-import './Month.css'
 import {EventDayType} from '../../utils/typesEvent';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../bll/store';
@@ -7,6 +6,7 @@ import {Block, EventForMonthWrapper, EventMoreWrapper, TimeInnerBlock, TimeWrapp
 
 type PropsType = {
     id: string
+    isWeek?: boolean
 }
 
 export const EventForMonth = (props: PropsType) => {
@@ -15,7 +15,7 @@ export const EventForMonth = (props: PropsType) => {
     return <>
         { // @ts-ignore
             events[props.id] ? events[props.id].map((e: EventDayType, i: number) => {
-                    if (i < 3) {
+                    if (i < 3 || props.isWeek) {
                         return <EventForMonthWrapper>
                             <Block>{e.name}</Block>
                             <TimeWrapper>

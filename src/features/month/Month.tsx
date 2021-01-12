@@ -1,8 +1,9 @@
 import React from 'react';
-import './Month.css'
 import moment from 'moment';
 import {CellWrapper, DayWrapper, GridWrapper, RowInCell} from '../styled/Styled';
 import {DayForMonth} from './DayForMonth';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../bll/store';
 
 export const Month = React.memo((props: any) => {
     const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
@@ -11,12 +12,13 @@ export const Month = React.memo((props: any) => {
 
     let isToday = moment().date()
     let isMonth = props.month.clone()
-
-    let daysObjectArray = props.daysObjectArray
-
+    let days = useSelector<AppRootStateType>(state => state.days)
+    // @ts-ignore
     return <GridWrapper
         // @ts-ignore
-        rows={'repeat(7,1fr)'}>
+        rows={'repeat(7,1fr)'}
+        height = {'115vh'}
+    >
         {DAYS_OF_THE_WEEK.map(d => (
             <CellWrapper key={d}>
                 <RowInCell
@@ -48,9 +50,8 @@ export const Month = React.memo((props: any) => {
                             {dayItem.format('D')}
                         </DayWrapper>
                     </RowInCell>
-                    {daysObjectArray.length > 0 ?  <DayForMonth dayItem = {dayItem} /> : ''}
-                </CellWrapper>
-            ))
-        }
+                    { // @ts-ignore
+                        days.length > 0 ? <DayForMonth dayItem={dayItem} days = {days}/> : ''}
+                </CellWrapper>))}
     </GridWrapper>
 })

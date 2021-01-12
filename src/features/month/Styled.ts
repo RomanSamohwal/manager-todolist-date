@@ -9,14 +9,14 @@ export const DayForMonthWrapper = styled.div`
 `
 export const EventForMonthWrapper = styled.div`
   width: 95%;
-  min-height: 25%;
+  min-height: 3.2vh;
   font-size: 1.7vh;
   display: flex;
   justify-content: space-between;
   text-align: center;
   background-color: green;
   border-radius: 5px;
-  margin-top: 1px;
+  margin-top: 2px;
   padding-left: 5px;
   padding-right: 5px;
   @media screen and (max-width: 950px) {

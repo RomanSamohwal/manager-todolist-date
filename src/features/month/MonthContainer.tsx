@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {Month} from './Month';
-import './Month.css'
 import {AppRootStateType, useAppDispatch} from '../../bll/store';
 import {switchCalendar} from '../../bll/app-reducer';
 import {useSelector} from 'react-redux';

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 //month and week
 export const GridWrapper = styled.div`
-    height: 110vh;
+    height: ${(props: any) => props.height};
     width: 100vw;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
