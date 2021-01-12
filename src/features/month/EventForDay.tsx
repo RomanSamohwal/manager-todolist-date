@@ -9,7 +9,7 @@ type PropsType = {
     id: string
 }
 
-export const EventBlockForMonth = (props: PropsType) => {
+export const EventForMonth = (props: PropsType) => {
     let events = useSelector<AppRootStateType>(state => state.events.events)
 
     return <>

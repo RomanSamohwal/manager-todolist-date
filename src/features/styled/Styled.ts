@@ -114,13 +114,12 @@ export const FormikInnerBlock = styled.div`
         margin-left: 5px;
         margin-right: 5px;
       }
-      $ input {
+      & input {
         width: 188px;
         margin-right: 5px;
       }
     }
 `
-
 export const Error = styled.div`
     width: 100%;
     text-align: center;

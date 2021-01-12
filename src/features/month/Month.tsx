@@ -2,8 +2,7 @@ import React from 'react';
 import './Month.css'
 import moment from 'moment';
 import {CellWrapper, DayWrapper, GridWrapper, RowInCell} from '../styled/Styled';
-import {DayType} from '../../utils/typesEvent';
-import {EventBlockForMonth} from './EventBlockForDay';
+import {DayForMonth} from './DayForMonth';
 
 export const Month = React.memo((props: any) => {
     const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
@@ -49,16 +48,7 @@ export const Month = React.memo((props: any) => {
                             {dayItem.format('D')}
                         </DayWrapper>
                     </RowInCell>
-                    {daysObjectArray.length > 0 ? <div className='block_event'>
-                        {daysObjectArray.map((d: DayType) => {
-                                if (d.date.year === +dayItem.format('Y') &&
-                                    d.date.month === +dayItem.format('M') &&
-                                    d.date.day === +dayItem.format('D')) {
-                                    return <EventBlockForMonth id = {d.id}/>
-                                }
-                            }
-                        )}
-                    </div> : ''}
+                    {daysObjectArray.length > 0 ?  <DayForMonth dayItem = {dayItem} /> : ''}
                 </CellWrapper>
             ))
         }
