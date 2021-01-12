@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 //month and week
 export const GridWrapper = styled.div`
-    height: 100vh;
+    height: 110vh;
+    width: 100vw;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: ${(props: any) => props.rows};
@@ -27,6 +28,7 @@ export const DayWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 10px;
     color:  ${(props: any) => props.month ? 'white' : '#60676c'};
 `
 
