@@ -168,12 +168,12 @@ let validate = (values: InitValueType) => {
             timeFromMinute: message_8
         }
     }
-    if ( values.timeToMinute < values.timeFromMinute) {
+  /*  if ( values.timeToMinute < values.timeFromMinute) {
         return {
             timeToMinute: message_9,
             timeFromMinute: message_9
         }
-    }
+    }*/
 }
 
 //type

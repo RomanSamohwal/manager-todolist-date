@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Month.css'
 import moment from 'moment';
 import {CellWrapper, DayWrapper, GridWrapper, RowInCell} from '../styled/Styled';
 import {DayType, EventDayType} from '../../utils/typesEvent';
 
 export const Month = React.memo((props: any) => {
-    console.log('Month')
     const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const day = props.dayCurrent.clone().subtract(1, 'day');
     const daysArray = [...Array(42)].map(() => day.add(1, 'day').clone())
@@ -13,7 +12,7 @@ export const Month = React.memo((props: any) => {
     let isToday = moment().date()
     let isMonth = props.month.clone()
     let events = props.events
-    console.log(events)
+
     let daysObjectArray = props.daysObjectArray
 
     return <GridWrapper
@@ -50,32 +49,43 @@ export const Month = React.memo((props: any) => {
                             {dayItem.format('D')}
                         </DayWrapper>
                     </RowInCell>
-                    <div className='block_event'>
+                    {daysObjectArray.length > 0 ? <div className='block_event'>
                         {daysObjectArray.map((d: DayType) => {
                                 if (d.date.year === +dayItem.format('Y') &&
                                     d.date.month === +dayItem.format('M') &&
                                     d.date.day === +dayItem.format('D')) {
                                     return <>
-                                        {events[d.id].map((e: any, i: any) => {
+                                        {events[d.id] ? events[d.id].map((e: EventDayType, i: any) => {
                                                 if (i < 3) {
                                                     return <div className='event'>
-                                                        <span>{e.name}</span>
-                                                        <span>{e.timeFrom}</span>
-                                                        <span>-</span>
-                                                        <span>{e.timeTo}</span>
+                                                        <div>{e.name}</div>
+                                                        <div className='time-block'>
+                                                            <div className='time-inner-block'>{String(e.timeFromHour).length > 1 ?
+                                                                e.timeFromHour : '0' + e.timeFromHour} <div>:</div>
+                                                                {String(e.timeFromMinute).length > 1 ?
+                                                                    e.timeFromMinute :
+                                                                    '0' + e.timeFromMinute
+                                                                }</div>
+                                                            <div>-</div>
+                                                            <div className='time-inner-block'>{String(e.timeToHour).length > 1 ?
+                                                                e.timeToHour : '0' + e.timeToHour}
+                                                                <div>:</div> {String(e.timeToMinute).length > 1 ?
+                                                                    e.timeToMinute : '0' + e.timeToMinute
+                                                                }</div>
+                                                        </div>
                                                     </div>
                                                 } else {
-                                                   return <div className='more' onClick={()=>{
-                                                       alert('more')
-                                                   }}>{'2+ more'}</div>
+                                                    return <div className='more' onClick={() => {
+                                                        alert('more')
+                                                    }}>{'+2 more'}</div>
                                                 }
                                             }
-                                        )}
+                                        ) : ''}
                                     </>
                                 }
                             }
                         )}
-                    </div>
+                    </div> : ''}
                 </CellWrapper>
             ))
         }
