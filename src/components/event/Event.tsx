@@ -5,6 +5,7 @@ type PropsType = {
     height: number
     top: number
     left: number
+
 }
 
 export const Event: React.FC<PropsType> = (props) => {

@@ -3,7 +3,7 @@ import {DayType} from '../../utils/typesEvent';
 import {EventForMonth} from './EventForDay';
 import React from 'react';
 
-export const DayForMonth = (props: any) => {
+export const DayForMonth: React.FC = (props: any) => {
     return <DayForMonthWrapper>
         {  // @ts-ignore
             props.days.map((d: DayType) => {

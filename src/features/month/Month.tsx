@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../bll/store';
 
 export const Month = React.memo((props: any) => {
+
     const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const day = props.dayCurrent.clone().subtract(1, 'day');
     const daysArray = [...Array(42)].map(() => day.add(1, 'day').clone())

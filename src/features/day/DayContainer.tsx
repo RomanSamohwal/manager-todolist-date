@@ -3,12 +3,11 @@ import {Day} from './Day';
 import {useAppDispatch} from '../../bll/store';
 import {switchCalendar} from '../../bll/app-reducer';
 
-export const DayContainer = () => {
+export const DayContainer = (props: any) => {
     let dispatch = useAppDispatch()
-
     useEffect(() => {
         dispatch(switchCalendar({choice: 'day'}))
     }, [])
 
-    return <Day/>
+    return <Day dayCurrent = {props.dayCurrent}/>
 }

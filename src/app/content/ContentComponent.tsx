@@ -11,11 +11,13 @@ export const ContentComponent = (props: any) => {
     let week = props.week
     let events = props.events
     let daysObjectArray = props.daysObjectArray
+    let  dayCurrent = props.dayCurrent
+
     return <>
         <Switch>
             <Route path={PATH.MONTH} render={() => <MonthContainer month = {month} day = {day} events = {events} daysObjectArray = {daysObjectArray} />}/>
             <Route path={PATH.WEEK} render={() => <WeekContainer week = {week} month = {month}/> }/>
-            <Route path={PATH.DAY} render={() => <DayContainer/>}/>
+            <Route path={PATH.DAY} render={() => <DayContainer dayCurrent = {dayCurrent}/>}/>
         </Switch>
     </>
 }

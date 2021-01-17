@@ -89,6 +89,7 @@ export const Main = () => {
                 weekCurrent={weekCurrent}
             />
             <ContentComponent
+                dayCurrent = {dayCurrent}
                 daysObjectArray = {daysObjectArray}
                 day={dayBeginOfMonth}
                 month={monthCurrent}
